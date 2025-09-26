@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" minHeight="65.0" prefHeight="65.0">
+         <children>
+            <StackPane prefHeight="65.0" prefWidth="107.0">
+               <children>
+                  <ImageView fitHeight="58.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Pictures/Captura.PNG" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <VBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="105.0">
+               <children>
+                  <Label prefHeight="47.0" prefWidth="89.0" text="SendiFLY" />
+               </children>
+            </VBox>
+            <Region prefHeight="65.0" prefWidth="134.0" />
+            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="221.0">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="105.0" text="Bienvenido, Usuario" />
+                     </children>
+                  </StackPane>
+                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="perfil" />
+                      <MenuItem mnemonicParsing="false" text="cerrar sesión" />
+                    </items>
+                     <tooltip>
+                        <Tooltip text="o" />
+                     </tooltip>
+                  </MenuButton>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0">
+         <content>
+            <VBox alignment="TOP_CENTER" prefHeight="196.0" prefWidth="573.0" spacing="30.0" style="-fx-background-color: #e13def;">
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Nueva Cotización" />
+                              <Label text="Calcula el costo de envío" />
+                              <Button mnemonicParsing="false" text="Cotiza Ahora" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Crear Envío" />
+                              <Label text="Generar envío" />
+                              <Button mnemonicParsing="false" text="Crea tu envío" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="rastrear envío" />
+                        <Label text="Ingresa el ID para rastrear tu envío" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField text="Ej:66666" />
+                              <Button mnemonicParsing="false" text=" ➝‬" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Region prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" text="Descargar Reportes" />
+            <Button mnemonicParsing="false" text="Consultar Historial" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

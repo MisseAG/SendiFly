@@ -1,0 +1,10 @@
+:root {
+    -coolWhite: #f5f5f5;
+    -alizarinCrimson: #e12a26;
+    -jadda: #ee9536;
+}
+
+.button {
+    -fx-background-color: var(-alizarinCrimson);
+    -fx-text-fill: var(-coolWhite);
+}

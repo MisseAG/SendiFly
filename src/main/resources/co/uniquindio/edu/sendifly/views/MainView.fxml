@@ -40,32 +40,32 @@
       <Rectangle fill="WHITE" height="262.0" layoutX="-9.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1549.0" />
       <ImageView fitHeight="244.0" fitWidth="427.0" layoutX="535.0" layoutY="8.0">
          <image>
-            <Image url="@SENDIFLY.png" />
+            <Image url="@../images/SENDIFLY.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="91.0" fitWidth="88.0" layoutX="149.0" layoutY="143.0">
          <image>
-            <Image url="@delivery-box_9709995.png" />
+            <Image url="@../images/delivery-box_9709995.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="115.0" fitWidth="88.0" layoutX="1278.0" layoutY="143.0">
          <image>
-            <Image url="@package_477465.png" />
+            <Image url="@../images/package_477465.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="115.0" fitWidth="88.0" layoutX="306.0" layoutY="29.0">
          <image>
-            <Image url="@package_4774654.PNG" />
+            <Image url="@../images/package_4774654.PNG" />
          </image>
       </ImageView>
       <ImageView fitHeight="91.0" fitWidth="95.0" layoutX="1378.0" layoutY="29.0">
          <image>
-            <Image url="@delivery-box_970999583.PNG" />
+            <Image url="@../images/delivery-box_970999583.PNG" />
          </image>
       </ImageView>
       <ImageView fitHeight="91.0" fitWidth="88.0" layoutX="46.0" layoutY="29.0">
          <image>
-            <Image url="@delivery-box_970999583.PNG" />
+            <Image url="@../images/delivery-box_970999583.PNG" />
          </image>
       </ImageView>
       <Button layoutX="549.0" layoutY="351.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="433.0" style="-fx-background-radius: 40; -fx-background-color: FFFFFF;" text="INICIAR SESIÓN">
@@ -92,7 +92,7 @@
       </Button>
       <ImageView fitHeight="115.0" fitWidth="88.0" layoutX="1138.0" layoutY="29.0">
          <image>
-            <Image url="@package_4774654.PNG" />
+            <Image url="@../images/package_4774654.PNG" />
          </image>
       </ImageView>
    </children>

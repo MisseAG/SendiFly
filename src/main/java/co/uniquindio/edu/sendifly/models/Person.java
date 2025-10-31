@@ -1,6 +1,6 @@
 package co.uniquindio.edu.sendifly.models;
 
-public class Person {
+public abstract class Person {
     private String id;
     private String name;
     private String phone;

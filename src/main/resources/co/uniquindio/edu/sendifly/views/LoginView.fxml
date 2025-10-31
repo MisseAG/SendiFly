@@ -15,10 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.uniquindio.edu.sendifly.controllers.LoginViewController"
             style="-fx-background-color: linear-gradient(to right, #f98144 0%, #c12525 100%);">
 
-    <!-- Header con logo -->
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="150.0"
               style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);">
@@ -33,7 +34,6 @@
         </HBox>
     </top>
 
-    <!-- Centro con formulario -->
     <center>
         <StackPane>
             <VBox alignment="CENTER" spacing="30.0" maxWidth="450.0"
@@ -42,18 +42,16 @@
                     <Insets top="40.0" right="40.0" bottom="40.0" left="40.0"/>
                 </padding>
 
-                <!-- Título -->
                 <Label text="INICIAR SESIÓN"
-                       style="-fx-text-fill: linear-gradient(to right, #ff1919 0%, #d98529 100%);">
+                       style="-fx-text-fill: #c12525;">
                     <font>
                         <Font name="Yu Gothic UI Semibold" size="42.0" />
                     </font>
                 </Label>
 
-                <!-- Formulario -->
+
                 <VBox spacing="25.0" VBox.vgrow="ALWAYS">
 
-                    <!-- Campo Usuario -->
                     <VBox spacing="8.0">
                         <Label text="USUARIO" style="-fx-text-fill: #333333;">
                             <font>
@@ -69,7 +67,6 @@
                         </TextField>
                     </VBox>
 
-                    <!-- Campo Contraseña -->
                     <VBox spacing="8.0">
                         <Label text="CONTRASEÑA" style="-fx-text-fill: #333333;">
                             <font>
@@ -85,7 +82,6 @@
                         </PasswordField>
                     </VBox>
 
-                    <!-- Campo Cargo -->
                     <VBox spacing="8.0">
                         <Label text="CARGO" style="-fx-text-fill: #333333;">
                             <font>
@@ -100,7 +96,6 @@
                         </ChoiceBox>
                     </VBox>
 
-                    <!-- Botón Continuar -->
                     <Button fx:id="btnLogin" text="CONTINUAR" maxWidth="Infinity" prefHeight="50.0"
                             style="-fx-background-color: linear-gradient(to right, #f98144 0%, #c12525 100%); -fx-text-fill: white; -fx-background-radius: 25; -fx-font-weight: bold;">
                         <font>

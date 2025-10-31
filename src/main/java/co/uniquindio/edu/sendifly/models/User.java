@@ -1,6 +1,6 @@
 package co.uniquindio.edu.sendifly.models;
 
-import co.uniquindio.edu.sendifly.models.PaymenMethods.PaymentMethod;
+import co.uniquindio.edu.sendifly.models.PaymentMethods.PaymentMethod;
 
 import java.util.ArrayList;
 import java.util.List;

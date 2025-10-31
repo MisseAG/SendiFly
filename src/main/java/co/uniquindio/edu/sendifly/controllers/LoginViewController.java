@@ -29,17 +29,13 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Inicializar el ChoiceBox con roles
+
         choiceRole.getItems().addAll("Usuario", "Administrador", "Repartidor");
         choiceRole.setValue("Usuario"); // Valor por defecto
 
-        // Configurar el evento del botón
         btnLogin.setOnAction(this::handleLogin);
     }
 
-    /**
-     * Maneja el proceso de login y redirige según el rol
-     */
     @FXML
     private void handleLogin(ActionEvent event) {
         // Obtener los datos ingresados
@@ -47,7 +43,6 @@ public class LoginViewController implements Initializable {
         String password = txtPassword.getText();
         String role = choiceRole.getValue();
 
-        // Validar que los campos no estén vacíos
         if (username.isEmpty() || password.isEmpty() || role == null) {
             mostrarAlerta(Alert.AlertType.WARNING,
                     "Campos incompletos",
@@ -55,7 +50,6 @@ public class LoginViewController implements Initializable {
             return;
         }
 
-        // Validar credenciales
         if (validarCredenciales(username, password, role)) {
             try {
                 redirigirSegunRol(role);
@@ -73,20 +67,15 @@ public class LoginViewController implements Initializable {
         }
     }
 
-    /**
-     * Valida las credenciales del usuario
-     * Aquí puedes conectar con tu base de datos o lógica de negocio
-     */
     private boolean validarCredenciales(String username, String password, String role) {
-        // CREDENCIALES DE PRUEBA - Reemplaza esto con tu lógica real
 
         if (role.equals("Usuario")) {
-            // Usuarios de prueba
+
             return (username.equals("user1") && password.equals("user123")) ||
                     (username.equals("usuario") && password.equals("1234"));
         }
         else if (role.equals("Administrador")) {
-            // Administradores de prueba
+
             return (username.equals("admin") && password.equals("admin123")) ||
                     (username.equals("administrador") && password.equals("admin"));
         }
@@ -94,41 +83,31 @@ public class LoginViewController implements Initializable {
         return false;
     }
 
-    /**
-     * Redirige a la vista correspondiente según el rol
-     */
     private void redirigirSegunRol(String role) throws IOException {
         String fxmlPath;
         String titulo;
 
-        // Determinar qué vista cargar según el rol
         if (role.equals("Usuario")) {
             fxmlPath = "/co/uniquindio/edu/sendifly/views/viewUser.fxml";
             titulo = "SENDIFLY - Panel de Usuario";
-        } else { // Administrador
+        } else{
             fxmlPath = "/co/uniquindio/edu/sendifly/views/viewAdmin.fxml";
             titulo = "SENDIFLY - Panel de Administrador";
         }
 
-        // Cargar la nueva vista
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
         Parent root = loader.load();
 
-        // Obtener el Stage actual
         Stage stage = (Stage) btnLogin.getScene().getWindow();
 
-        // Crear nueva escena y mostrarla
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle(titulo);
         stage.show();
 
-        System.out.println("✅ Redirigido a: " + titulo);
+        System.out.println("Redirigido a: " + titulo);
     }
 
-    /**
-     * Muestra una alerta al usuario
-     */
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
@@ -137,9 +116,6 @@ public class LoginViewController implements Initializable {
         alert.showAndWait();
     }
 
-    /**
-     * Limpia los campos del formulario
-     */
     private void limpiarCampos() {
         txtPassword.clear();
         txtUsername.clear();

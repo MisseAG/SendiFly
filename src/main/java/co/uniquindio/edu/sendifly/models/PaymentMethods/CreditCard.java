@@ -1,4 +1,4 @@
-package co.uniquindio.edu.sendifly.models.PaymenMethods;
+package co.uniquindio.edu.sendifly.models.PaymentMethods;
 
 public class CreditCard implements PaymentMethod {
     public void pay(double amount) {

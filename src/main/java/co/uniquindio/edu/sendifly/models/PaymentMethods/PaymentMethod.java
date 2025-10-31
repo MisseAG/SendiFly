@@ -1,4 +1,4 @@
-package co.uniquindio.edu.sendifly.models.PaymenMethods;
+package co.uniquindio.edu.sendifly.models.PaymentMethods;
 
 public interface PaymentMethod {
     void pay(double amount);

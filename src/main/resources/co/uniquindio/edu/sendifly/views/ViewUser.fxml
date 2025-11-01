@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="480.0" prefWidth="379.0" stylesheets="@../css/usuariostyle.css"
+<VBox prefHeight="480.0" prefWidth="379.0" stylesheets="@../css/userstyle.css"
       xmlns="http://javafx.com/javafx/17.0.12"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.sendifly.controllers.VistaUsuarioController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.sendifly.controllers.ViewUserController">
     <children>
         <!-- HEADER -->
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="10.0" style="-fx-background-color: #e12a26; -fx-padding: 0 15 0 15;">

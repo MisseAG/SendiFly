@@ -3,7 +3,7 @@ package co.uniquindio.edu.sendifly.controllers;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 
-public class VistaUsuarioController {
+public class ViewUserController {
 
     @FXML
     private void handleProfileSettings(ActionEvent event) {

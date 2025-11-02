@@ -1,6 +1,8 @@
 module co.uniquindio.edu.sendifly {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.graphics;
+    requires javafx.base;
 
 
     opens co.uniquindio.edu.sendifly to javafx.fxml;

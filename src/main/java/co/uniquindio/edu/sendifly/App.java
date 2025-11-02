@@ -1,7 +1,21 @@
 package co.uniquindio.edu.sendifly;
 
-public class App {
-    public static void main(String[] args) {
-        System.out.println(App.class.getResource("/co/uniquindio/edu/sendifly/images/logobajacalidadcambiarurgente.PNG"));
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class App extends Application{
+
+        @Override
+        public void start(Stage stage) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/co/uniquindio/edu/sendifly/views/MainView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 600);
+            stage.setTitle("SendiFly");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
-}
+

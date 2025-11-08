@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User extends Person{
-    private List<PaymentMethod> paymentMethods;
+    private List<PaymentMethod> paymentMethodsList;
+    private List<Address> addressesList;
 
     public User(UserBuilder build) {
         super(build.id, build.name, build.phone, build.email, build.password);
-        this.paymentMethods = new ArrayList<>();
+        this.paymentMethodsList = new ArrayList<>();
+        this.addressesList = new ArrayList<>();
     }
 
     public static class UserBuilder {
@@ -46,7 +48,7 @@ public class User extends Person{
     }
 
     public void makePayment(String methodName, double amount) {
-        for (PaymentMethod pm : paymentMethods) {
+        for (PaymentMethod pm : paymentMethodsList) {
             if (pm.getName().equalsIgnoreCase(methodName)) {
                 pm.pay(amount);
                 return;
@@ -54,5 +56,7 @@ public class User extends Person{
         }
         throw new IllegalArgumentException("[User]Método de pago no encontrado: " + methodName);
     }
+
+    //falta agregar lo de las direcciones
 
 }

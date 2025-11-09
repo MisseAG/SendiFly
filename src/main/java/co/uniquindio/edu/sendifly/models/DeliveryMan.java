@@ -1,10 +1,13 @@
 package co.uniquindio.edu.sendifly.models;
 
-public class DeliveryMan extends Person{
+import co.uniquindio.edu.sendifly.models.AvailabilityStatus.AvailabilityStatus;
 
+public class DeliveryMan extends Person{
+    private AvailabilityStatus availabilityStatus;
 
     public DeliveryMan(DeliveryManBuilder build) {
         super(build.id, build.name, build.phone, build.email, build.password);
+        this.availabilityStatus = build.availabilityStatus;
     }
 
     public static class DeliveryManBuilder {
@@ -13,6 +16,7 @@ public class DeliveryMan extends Person{
         private String phone;
         private String email;
         private String password;
+        private AvailabilityStatus availabilityStatus;
 
         public DeliveryManBuilder id(String id){
             this.id = id;
@@ -32,6 +36,10 @@ public class DeliveryMan extends Person{
 
         public DeliveryManBuilder password(String password){
             this.password = password;
+            return this;}
+
+        public DeliveryManBuilder availabilityStatus(AvailabilityStatus availabilityStatus){
+            this.availabilityStatus = availabilityStatus;
             return this;}
 
         public DeliveryMan build(){

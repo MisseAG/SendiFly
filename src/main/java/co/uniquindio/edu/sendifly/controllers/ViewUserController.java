@@ -86,4 +86,5 @@ public class ViewUserController implements Initializable{
     private void handleViewHistory(ActionEvent event) {
         System.out.println("Ver historial");
     }
+
 }

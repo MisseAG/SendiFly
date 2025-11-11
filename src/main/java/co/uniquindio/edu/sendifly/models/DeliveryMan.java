@@ -1,6 +1,7 @@
 package co.uniquindio.edu.sendifly.models;
 
 import co.uniquindio.edu.sendifly.models.AvailabilityStatus.AvailabilityStatus;
+import co.uniquindio.edu.sendifly.models.AvailabilityStatus.Inactive;
 
 public class DeliveryMan extends Person{
     private AvailabilityStatus availabilityStatus;
@@ -10,13 +11,21 @@ public class DeliveryMan extends Person{
         this.availabilityStatus = build.availabilityStatus;
     }
 
+    public AvailabilityStatus getAvailabilityStatus() {
+        return availabilityStatus;
+    }
+
+    public void setAvailabilityStatus(AvailabilityStatus availabilityStatus) {
+        this.availabilityStatus = availabilityStatus;
+    }
+
     public static class DeliveryManBuilder {
         private String id;
         private String name;
         private String phone;
         private String email;
         private String password;
-        private AvailabilityStatus availabilityStatus;
+        private AvailabilityStatus availabilityStatus = new Inactive();
 
         public DeliveryManBuilder id(String id){
             this.id = id;
@@ -43,6 +52,9 @@ public class DeliveryMan extends Person{
             return this;}
 
         public DeliveryMan build(){
+            if (this.availabilityStatus == null) {
+                this.availabilityStatus = new Inactive();
+            }
             return new DeliveryMan(this);
         }
     }

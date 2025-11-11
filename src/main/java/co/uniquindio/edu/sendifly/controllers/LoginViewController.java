@@ -1,5 +1,11 @@
 package co.uniquindio.edu.sendifly.controllers;
 
+import co.uniquindio.edu.sendifly.models.Administrator;
+import co.uniquindio.edu.sendifly.models.DeliveryMan;
+import co.uniquindio.edu.sendifly.models.Person;
+import co.uniquindio.edu.sendifly.models.User;
+import co.uniquindio.edu.sendifly.repositories.PersonRepository;
+import co.uniquindio.edu.sendifly.services.PersonService;
 import co.uniquindio.edu.sendifly.utils.NavigationUtil;
 
 import javafx.event.ActionEvent;
@@ -22,8 +28,10 @@ public class LoginViewController implements Initializable {
     private PasswordField txtPassword;
 
     @FXML
-    private TextField txtUsername;
+    private TextField txtEmail;
 
+    private PersonRepository personRepository;
+    private PersonService personService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,25 +40,27 @@ public class LoginViewController implements Initializable {
         choiceRole.getItems().addAll("Usuario", "Administrador", "Repartidor");
         choiceRole.setValue("Usuario"); // Valor por defecto
 
-        btnLogin.setOnAction(this::handleLogin);
+        personRepository = PersonRepository.getInstance();
+        personService = PersonService.getInstance();
+
     }
 
     //
     @FXML
     private void handleLogin(ActionEvent event) {
         // Obtener los datos ingresados
-        String username = txtUsername.getText().trim();
+        String email = txtEmail.getText().trim();
         String password = txtPassword.getText();
         String role = choiceRole.getValue();
 
-        if (username.isEmpty() || password.isEmpty() || role == null) {
+        if (email.isEmpty() || password.isEmpty() || role == null) {
             mostrarAlerta(Alert.AlertType.WARNING,
                     "Campos incompletos",
                     "Por favor complete todos los campos");
             return;
         }
 
-        if (validarCredenciales(username, password, role)) {
+        if (validarCredenciales(email, password, role)) {
             try {
                 redirigirSegunRol(role);
             } catch (IOException e) {
@@ -68,22 +78,45 @@ public class LoginViewController implements Initializable {
     }
 
     private boolean validarCredenciales(String username, String password, String role) {
+        try {
 
-        if (role.equals("Usuario")) {
+            System.out.println("Buscando: " + username + " | Pass: " + password + " | Role: " + role);
+            // Buscar persona por email
+            Person person = personRepository.findByEmail(username);
 
-            return (username.equals("user") && password.equals("user123")) ||
-                    (username.equals("usuario") && password.equals("1234"));
+            System.out.println("Persona encontrada: " + (person != null ? person.getEmail() : "null"));
+            // Verificar si existe
+
+            if (person == null) {
+                System.out.println("No se encontró usuario");
+                return false;
+            }
+
+            // Verificar contraseña
+            if (!person.getPassword().equals(password)) {
+                System.out.println("Contraseña incorrecta");
+                return false;
+            }
+
+            // Verificar rol
+            boolean rolValido = verificarRol(person, role);
+            System.out.println("Rol válido: " + rolValido);
+
+            return rolValido;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-        else if (role.equals("Administrador")) {
+    }
 
-            return (username.equals("admin") && password.equals("admin123")) ||
-                    (username.equals("administrador") && password.equals("admin"));
-        }
-        else if (role.equals("Repartidor")){
-
-            return (username.equals("delivery") && password.equals("delivery123"));
-        }
-        return false;
+    private boolean verificarRol(Person person, String role) {
+        return switch (role) {
+            case "Usuario" -> person instanceof User;
+            case "Administrador" -> person instanceof Administrator;
+            case "Repartidor" -> person instanceof DeliveryMan;
+            default -> false;
+        };
     }
 
     private void redirigirSegunRol(String role) throws IOException {
@@ -100,7 +133,14 @@ public class LoginViewController implements Initializable {
 
     private void limpiarCampos() {
         txtPassword.clear();
-        txtUsername.clear();
-        txtUsername.requestFocus();
+        txtEmail.clear();
+        txtEmail.requestFocus();
+    }
+
+    @FXML
+    public void handleBackToHome(ActionEvent actionEvent) {
+        String path = "/co/uniquindio/edu/sendifly/views/MainView.fxml";
+        String title = "SendiFly-Login";
+        NavigationUtil.navigateToScene(btnLogin, path, title);
     }
 }

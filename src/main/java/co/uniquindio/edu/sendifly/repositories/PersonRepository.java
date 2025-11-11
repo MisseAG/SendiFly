@@ -25,13 +25,15 @@ public class PersonRepository {
     }
 
     public void addPerson(Person person){
+        System.out.println("Agregando persona: " + person.getEmail());
         for(Person p: People){
             if(p.getId().equals(person.getId())){
-                throw new IllegalArgumentException("[UserRepository]el usuario ya existe");
+                throw new IllegalArgumentException("[PersonRepository]el usuario ya existe");
 
             }
         }
         People.add(person);
+        System.out.println("Total personas ahora: " + People.size());
     }
 
     public void removePerson(Person person){
@@ -40,7 +42,7 @@ public class PersonRepository {
                 People.remove(p);
                 return;
             }
-        }throw new IllegalArgumentException("[UserRepository]el usuario No existe");
+        }throw new IllegalArgumentException("[PersonRepository]el usuario No existe");
     }
 
     //falta update en service
@@ -63,8 +65,20 @@ public class PersonRepository {
     }
 
 
-    public boolean existPerson(String id) {
-        return getPerson(id).isPresent();
+    public boolean existPerson(Person person) {
+        if (person == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public Person findByEmail(String email) {
+        for (Person p : People) {
+            if (p.getEmail().equals(email)) {
+                return p;
+            }
+        }
+        return null;
     }
 
 }

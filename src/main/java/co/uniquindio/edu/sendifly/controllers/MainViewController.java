@@ -50,19 +50,17 @@ public class MainViewController implements Initializable{
         );
     }
 
-
     @FXML
-    private void handleRegister(ActionEvent event) {
-        //cambiar path a la de registro
-        String path = "/co/uniquindio/edu/sendifly/views/MainView.fxml";
-        String title = "SendiFly-Home";
+    private void handleLogin(ActionEvent event) {
+        String path = "/co/uniquindio/edu/sendifly/views/LoginView.fxml";
+        String title = "SendiFly-Login";
         NavigationUtil.navigateToScene(btnLogin, path, title);
     }
 
     @FXML
-    private void handleLogin(ActionEvent event) {
-        String path = "/co/uniquindio/edu/sendifly/views/LoginView.fxml";
-        String title = "SendiFly-Home";
+    private void handleRegister(ActionEvent event) {
+        String path = "/co/uniquindio/edu/sendifly/views/SigninView.fxml";
+        String title = "SendiFly-SignIn";
         NavigationUtil.navigateToScene(btnLogin, path, title);
     }
 }

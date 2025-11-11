@@ -15,6 +15,22 @@ public class User extends Person{
         this.addressesList = new ArrayList<>();
     }
 
+    public List<Address> getAddressesList() {
+        return addressesList;
+    }
+
+    public void setAddressesList(List<Address> addressesList) {
+        this.addressesList = addressesList;
+    }
+
+    public List<PaymentMethod> getPaymentMethodsList() {
+        return paymentMethodsList;
+    }
+
+    public void setPaymentMethodsList(List<PaymentMethod> paymentMethodsList) {
+        this.paymentMethodsList = paymentMethodsList;
+    }
+
     public static class UserBuilder {
         private String id;
         private String name;

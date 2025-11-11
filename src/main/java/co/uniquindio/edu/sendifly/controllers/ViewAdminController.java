@@ -91,7 +91,7 @@ public class ViewAdminController {
 
     @FXML
     private void handleClientes() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/gestionClientes.fxml", "👤 Gestión de Clientes");
+        cargarVista("/co/uniquindio/edu/sendifly/views/admin/gestionClientes.fxml", "👤 Gestión de Clientes");
     }
 
     @FXML

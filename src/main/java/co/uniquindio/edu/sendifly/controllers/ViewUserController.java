@@ -42,6 +42,15 @@ public class ViewUserController implements Initializable{
     @FXML
     private Label userGreetingLabel;
 
+    @FXML
+    private Button paymentMethodsBtn;
+
+    @FXML
+    private Button addressesBtn;
+
+    @FXML
+    private Button paymentsHistorialBtn;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -65,16 +74,53 @@ public class ViewUserController implements Initializable{
     @FXML
     private void handleNewQuote(ActionEvent event) {
         System.out.println("Nueva cotización");
+        String path = "/co/uniquindio/edu/sendifly/views/user/CotizacionView.fxml";
+        String title = "SendiFly-Cotización";
+        //Usa cualquier node
+        Node node = userGreetingLabel;
+        NavigationUtil.navigateToScene(node, path, title,400 ,600);
     }
 
     @FXML
     private void handleCreateShipment(ActionEvent event) {
         System.out.println("Crear envío");
+        String path = "/co/uniquindio/edu/sendifly/views/CrearEnvioView.fxml";
+        String title = "SendiFly-Envío";
+        //Usa cualquier node
+        Node node = userGreetingLabel;
+        NavigationUtil.navigateToScene(node, path, title,400 ,600);
     }
 
     @FXML
     private void handleTrackShipment(ActionEvent event) {
         System.out.println("Rastrear envío");
+    }
+
+    @FXML
+    private void handlePaymentMethods(ActionEvent event){
+        String path = "/co/uniquindio/edu/sendifly/views/FormasDePago.fxml";
+        String title = "SendiFly-Envío";
+        //Usa cualquier node
+        Node node = userGreetingLabel;
+        NavigationUtil.navigateToScene(node, path, title,400 ,600);
+    }
+
+    @FXML
+    private void handleAddresses(ActionEvent event){
+        String path = "/co/uniquindio/edu/sendifly/views/FormasDePago.fxml";
+        String title = "SendiFly-Envío";
+        //Usa cualquier node
+        Node node = userGreetingLabel;
+        NavigationUtil.navigateToScene(node, path, title,400 ,600);
+    }
+
+    @FXML
+    private void handlePaymentsHistorial (ActionEvent event){
+        String path = "/co/uniquindio/edu/sendifly/views/FormasDePago.fxml";
+        String title = "SendiFly-Envío";
+        //Usa cualquier node
+        Node node = userGreetingLabel;
+        NavigationUtil.navigateToScene(node, path, title,400 ,600);
     }
 
     @FXML

@@ -4,29 +4,23 @@ public class Pack {
     private String id;
     private String product;
     private float price;
-    private float width;
-    private float length;
-    private float height;
     private float weight;
+    private float volume;
 
     public Pack(PackageBuilder build){
         this.id = build.id;
         this.product = build.product;
         this.price = build.price;
-        this.width = build.width;
-        this.length = build.length;
-        this.height = build.height;
         this.weight = build.weight;
+        this.volume = build.volume;
     }
 
     public static class PackageBuilder{
         private String id;
         private String product;
         private float price;
-        private float width;
-        private float length;
-        private float height;
         private float weight;
+        private float volume;
 
         public PackageBuilder id(String id){
             this.id = id;
@@ -40,20 +34,12 @@ public class Pack {
             this.price = price;
             return this;}
 
-        public PackageBuilder width(float width){
-            this.width = width;
-            return this;}
-
-        public PackageBuilder length(float length){
-            this.length = length;
-            return this;}
-
-        public PackageBuilder height(float height){
-            this.height = height;
-            return this;}
-
-        public PackageBuilder weight(float weight){
+        public PackageBuilder height(float weight){
             this.weight = weight;
+            return this;}
+
+        public PackageBuilder volume(float volume){
+            this.volume = volume;
             return this;}
 
         public Pack build(){
@@ -79,23 +65,12 @@ public class Pack {
     public void setPrice(float price) {
         this.price = price;}
 
-    public float getWidth() {
-        return width;}
+    public void setVolume(float Volume) {
+        this.volume = volume;}
 
-    public void setWidth(float width) {
-        this.width = width;}
-
-    public float getLength() {
-        return length;}
-
-    public void setLength(float length) {
-        this.length = length;}
-
-    public float getHeight() {
-        return height;}
-
-    public void setHeight(float height) {
-        this.height = height;}
+    public float getVolume() {
+        return volume;
+    }
 
     public float getWeight() {
         return weight;}

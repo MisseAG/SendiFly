@@ -48,9 +48,9 @@ public class Fee {
         return percentage;
     }
 
-    public float getTotalPrice(){
-        return this.shipment.getShippingPrice() + this.shipment.getShippingPrice() * getPercentageOfCostIncrease();
-    }
+//    public float getTotalPrice(){
+//        return this.shipment.getShippingPrice() + this.shipment.getShippingPrice() * getPercentageOfCostIncrease();
+//    }
 
 
 

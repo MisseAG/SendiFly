@@ -136,13 +136,13 @@ public class Shipment {
     public void setPack(Pack pack) {
         this.pack = pack;}
 
-    public float getShippingPrice(){
-        float price= this.pack.getPrice();
-        float increaseByVolume= (this.pack.getHeight()*this.pack.getWidth()*this.pack.getLength())/500;
-        float increaseByWeight= (float) (this.pack.getWeight()/0.99);
-        price= price + price * increaseByVolume * increaseByWeight;
-        price= price + price * this.additionalService.rateIncrease();
-        return price + price * this.shippingPriority.rateIncrease();
-    }
+    // public float getShippingPrice(){
+        //float price= this.pack.getPrice();
+        // float increaseByVolume= (this.pack.getHeight()*this.pack.getWidth()*this.pack.getLength())/500;
+        // float increaseByWeight= (float) (this.pack.getWeight()/0.99);
+        // price= price + price * increaseByVolume * increaseByWeight;
+        //price= price + price * this.additionalService.rateIncrease();
+       // return price + price * this.shippingPriority.rateIncrease();
+   // }
 
 }

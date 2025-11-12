@@ -34,7 +34,7 @@ public class Pack {
             this.price = price;
             return this;}
 
-        public PackageBuilder height(float weight){
+        public PackageBuilder weight(float weight){
             this.weight = weight;
             return this;}
 
@@ -46,6 +46,7 @@ public class Pack {
             return new Pack(this);
         }
     }
+
 
     public String getId() {
         return id;}
@@ -77,6 +78,7 @@ public class Pack {
 
     public void setWeight(float weight) {
         this.weight = weight;}
+
 
 
 

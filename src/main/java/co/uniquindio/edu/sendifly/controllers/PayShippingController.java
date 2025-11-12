@@ -7,7 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class PagarEnvioController {
+public class PayShippingController {
 
     @FXML
     private Button backBtn;

@@ -8,6 +8,7 @@ import java.util.List;
 public class User extends Person{
     private List<PaymentMethod> paymentMethodsList;
     private List<Address> addressesList;
+    private List<Shipment> shipmentsList;
 
     //private list<envíos> envíos, los que aún no están asignados, que se muestran en la tabla para poder ser modificados
 
@@ -15,6 +16,7 @@ public class User extends Person{
         super(build.id, build.name, build.phone, build.email, build.password);
         this.paymentMethodsList = new ArrayList<>();
         this.addressesList = new ArrayList<>();
+        this.shipmentsList = new ArrayList<>();
     }
 
     public List<Address> getAddressesList() {
@@ -31,6 +33,14 @@ public class User extends Person{
 
     public void setPaymentMethodsList(List<PaymentMethod> paymentMethodsList) {
         this.paymentMethodsList = paymentMethodsList;
+    }
+
+    public List<Shipment> getShipmentsList() {
+        return shipmentsList;
+    }
+
+    public void setShipmentsList(List<Shipment> shipmentsList) {
+        this.shipmentsList = shipmentsList;
     }
 
     public static class UserBuilder {

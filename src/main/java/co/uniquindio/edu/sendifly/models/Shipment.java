@@ -145,4 +145,5 @@ public class Shipment {
        // return price + price * this.shippingPriority.rateIncrease();
    // }
 
+
 }

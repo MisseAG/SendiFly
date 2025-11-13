@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: linear-gradient(#F97F2A, #C22222);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <BorderPane prefHeight="129.0" prefWidth="1347.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+         <right>
+            <StackPane prefHeight="130.0" prefWidth="548.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label style="-fx-text-fill: linear-gradient(#F97F2A, #C22222);" text="DIRECCIONES">
+                     <font>
+                        <Font name="Yu Gothic UI Semibold" size="54.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </right>
+         <left>
+            <ImageView fitHeight="130.0" fitWidth="194.0" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../Downloads/unnamed.jpg" />
+               </image>
+               <BorderPane.margin>
+                  <Insets left="50.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </left>
+      </BorderPane>
+   </top>
+   <center>
+      <TableView prefHeight="489.0" prefWidth="1246.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="619.7333091497421" text="NOMBRE" />
+          <TableColumn minWidth="0.0" prefWidth="627.4666748046875" text="DIRECCIÓN" />
+        </columns>
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="50.0" right="50.0" />
+         </BorderPane.margin>
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0">
+               <children>
+                  <Button fx:id="onAgregarButton" mnemonicParsing="false" onAction="#onAgregarButtonClicked" prefHeight="55.0" prefWidth="188.0" style="-fx-background-radius: 50;" text="AGREGAR">
+                     <font>
+                        <Font name="Yu Gothic UI Semibold" size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0">
+               <children>
+                  <Button fx:id="onEditarButton" mnemonicParsing="false" onAction="#onEditarButtonClicked" prefHeight="55.0" prefWidth="188.0" style="-fx-background-radius: 50;" text="EDITAR">
+                     <font>
+                        <Font name="Yu Gothic UI Semibold" size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0">
+               <children>
+                  <Button fx:id="onEliminarButton" mnemonicParsing="false" onAction="#onEliminarButtonClicked" prefHeight="55.0" prefWidth="188.0" style="-fx-background-radius: 50;" text="ELIMINAR">
+                     <font>
+                        <Font name="Yu Gothic UI Semibold" size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

@@ -84,7 +84,7 @@ public class ViewUserController implements Initializable{
     @FXML
     private void handleCreateShipment(ActionEvent event) {
         System.out.println("Crear envío");
-        String path = "/co/uniquindio/edu/sendifly/views/CrearEnvioView.fxml";
+        String path = "/co/uniquindio/edu/sendifly/views/user/CrearEnvioView.fxml";
         String title = "SendiFly-Envío";
         //Usa cualquier node
         Node node = userGreetingLabel;
@@ -98,8 +98,8 @@ public class ViewUserController implements Initializable{
 
     @FXML
     private void handlePaymentMethods(ActionEvent event){
-        String path = "/co/uniquindio/edu/sendifly/views/FormasDePago.fxml";
-        String title = "SendiFly-Envío";
+        String path = "/co/uniquindio/edu/sendifly/views/user/FormasDePago.fxml";
+        String title = "SendiFly-FormasDePago";
         //Usa cualquier node
         Node node = userGreetingLabel;
         NavigationUtil.navigateToScene(node, path, title,400 ,600);
@@ -107,17 +107,18 @@ public class ViewUserController implements Initializable{
 
     @FXML
     private void handleAddresses(ActionEvent event){
-        String path = "/co/uniquindio/edu/sendifly/views/FormasDePago.fxml";
+        String path = "/co/uniquindio/edu/sendifly/views/user/direccionesView.fxml";
         String title = "SendiFly-Envío";
         //Usa cualquier node
         Node node = userGreetingLabel;
         NavigationUtil.navigateToScene(node, path, title,400 ,600);
     }
 
+
     @FXML
     private void handlePaymentsHistorial (ActionEvent event){
-        String path = "/co/uniquindio/edu/sendifly/views/FormasDePago.fxml";
-        String title = "SendiFly-Envío";
+        String path = "/co/uniquindio/edu/sendifly/views/user/FormasDePago.fxml";
+        String title = "SendiFly-Historial";
         //Usa cualquier node
         Node node = userGreetingLabel;
         NavigationUtil.navigateToScene(node, path, title,400 ,600);

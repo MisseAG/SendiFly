@@ -136,6 +136,15 @@
                                         </ComboBox>
                                     </children>
                                 </VBox>
+                                <!-- Botón Calcular -->
+                                <Button fx:id="calcularPrecioBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleCrear" prefHeight="50.0" style="-fx-background-color: #ee9536; -fx-text-fill: white; -fx-background-radius: 10;" text="Calcular Precio">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Button>
                                 <!-- Display de Precio -->
                                 <VBox alignment="CENTER" spacing="8.0" style="-fx-background-color: #f8f9fa;                                              -fx-background-radius: 15;                                              -fx-padding: 20;                                              -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 2);">
                                     <children>

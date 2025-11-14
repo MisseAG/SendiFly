@@ -1,7 +1,6 @@
 package co.uniquindio.edu.sendifly.services;
 
 import co.uniquindio.edu.sendifly.models.Administrator;
-import co.uniquindio.edu.sendifly.models.AvailabilityStatus.AvailabilityStatus;
 import co.uniquindio.edu.sendifly.models.DeliveryMan;
 import co.uniquindio.edu.sendifly.models.Person;
 import co.uniquindio.edu.sendifly.models.User;
@@ -28,7 +27,7 @@ public class PersonService {
 
     private void initializedData() {
         createPerson();
-        System.out.println("Personas guardadas: " + personRepository.getAllPeople().size());
+        System.out.println("Personas guardadas: " + personRepository.getAll().size());
     }
 
     private void createPerson(){
@@ -55,8 +54,8 @@ public class PersonService {
       personRepository.addPerson(p2);
       personRepository.addPerson(p3);
 
-      System.out.println("Personas en repositorio: " + personRepository.getAllPeople().size());
-        personRepository.getAllPeople().forEach(p ->
+      System.out.println("Personas en repositorio: " + personRepository.getAll().size());
+        personRepository.getAll().forEach(p ->
                 System.out.println("Email: " + p.getEmail() + " | Password: " + p.getPassword())
         );
     }

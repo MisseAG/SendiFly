@@ -56,7 +56,7 @@ public class PersonRepository {
         return Optional.empty(); // optional es clave, pues service ya decide que hacer si el usuario no existe ;)
     }
 
-    public ArrayList<Person> getAllPeople(){
+    public ArrayList<Person> getAll(){
         return new ArrayList<>(People);
     }
 

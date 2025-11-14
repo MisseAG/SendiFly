@@ -3,11 +3,14 @@ module co.uniquindio.edu.sendifly {
     requires javafx.fxml;
     requires javafx.graphics;
     requires javafx.base;
-   // requires co.uniquindio.edu.sendifly;
+    // requires co.uniquindio.edu.sendifly;
 
     opens co.uniquindio.edu.sendifly to javafx.fxml;
     exports co.uniquindio.edu.sendifly;
 
     opens co.uniquindio.edu.sendifly.controllers to javafx.fxml;
     exports co.uniquindio.edu.sendifly.controllers;
+
+    opens co.uniquindio.edu.sendifly.dtos to javafx.fxml;
+    exports co.uniquindio.edu.sendifly.dtos;
 }

@@ -80,7 +80,7 @@ public class ViewAdminController {
      */
     private void mostrarError(String mensaje) {
         contenedorDinamico.getChildren().clear();
-        Label errorLabel = new Label("⚠️ " + mensaje);
+        Label errorLabel = new Label(mensaje);
         errorLabel.setStyle("-fx-text-fill: #dc3545; -fx-font-size: 16px; -fx-font-weight: bold;");
         contenedorDinamico.getChildren().add(errorLabel);
     }
@@ -91,12 +91,12 @@ public class ViewAdminController {
 
     @FXML
     private void handleClientes() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/admin/gestionClientes.fxml", "👤 Gestión de Clientes");
+        cargarVista("/co/uniquindio/edu/sendifly/views/admin/gestionClientes.fxml", "Gestión de Clientes");
     }
 
     @FXML
     private void handleRepartidores() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/gestionRepartidores.fxml", "🚚 Gestión de Repartidores");
+        cargarVista("/co/uniquindio/edu/sendifly/views/admin/gestionRepartidores.fxml", "Gestión de Repartidores");
     }
 
     // ============================================
@@ -105,17 +105,17 @@ public class ViewAdminController {
 
     @FXML
     private void handleCRUD() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/crudEnvios.fxml", "✏️ CRUD Envíos");
+        cargarVista("/co/uniquindio/edu/sendifly/views/admin/crudEnvios.fxml", "CRUD Envíos");
     }
 
     @FXML
     private void handleConsultar() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/consultarEnvio.fxml", "🔍 Consultar Envío");
+        cargarVista("/co/uniquindio/edu/sendifly/views/admin/consultarEnvio.fxml", "Envío");
     }
 
     @FXML
     private void handleAsignar() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/asignarEnvio.fxml", "📌 Asignar Envío");
+        cargarVista("/co/uniquindio/edu/sendifly/views/admin/asignarEnvio.fxml", "Asignar Envío");
     }
 
     // ============================================
@@ -124,17 +124,17 @@ public class ViewAdminController {
 
     @FXML
     private void handleChart1() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/chartEnviosMensuales.fxml", "📈 Envíos Mensuales");
+        cargarVista("/co/uniquindio/edu/sendifly/views/admin/chartEnviosMensuales.fxml", "📈 Envíos Mensuales");
     }
 
     @FXML
     private void handleChart2() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/chartTopRutas.fxml", "📉 Top Rutas");
+        cargarVista("/co/uniquindio/edu/sendifly/views/chartTopRutas.fxml", "Top Rutas");
     }
 
     @FXML
     private void handleChart3() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/chartRendimiento.fxml", "📊 Rendimiento");
+        cargarVista("/co/uniquindio/edu/sendifly/views/chartRendimiento.fxml", "Rendimiento");
     }
 
     // ============================================
@@ -143,14 +143,13 @@ public class ViewAdminController {
 
     @FXML
     private void handleProfile() {
-        System.out.println("⚙️ Configurar Perfil");
-        cargarVista("/co/uniquindio/edu/sendifly/views/configurarPerfil.fxml", "⚙️ Configurar Perfil");
+        System.out.println("Configurar Perfil");
+        cargarVista("/co/uniquindio/edu/sendifly/views/configurarPerfil.fxml", "⚙onfigurar Perfil");
     }
 
     @FXML
     private void handleLogout() {
-        System.out.println("🚪 Cerrar Sesión");
-        // Usar NavigationUtil para volver al login
+        System.out.println("Cerrar Sesión");
         NavigationUtil.navigateToScene(
                 contenedorDinamico,
                 "/co/uniquindio/edu/sendifly/views/Login.fxml",
@@ -166,7 +165,7 @@ public class ViewAdminController {
      * Carga el dashboard por defecto
      */
     public void cargarDashboard() {
-        dashboardTitle.setText("🏠 Dashboard");
+        dashboardTitle.setText("Dashboard");
         // Aquí puedes cargar estadísticas generales o una vista de resumen
     }
 }

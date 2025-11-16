@@ -10,7 +10,7 @@ public class Payment {
     private boolean result;
     private User user;
     private PaymentMethod paymentMethod;
-    private Fee fee;
+    private Shipment shipment;
 
     public Payment(PaymentBuilder build){
         this.id = build.id;
@@ -18,7 +18,7 @@ public class Payment {
         this.result = build.result;
         this.user = build.user;
         this.paymentMethod = build.paymentMethod;
-        this.fee = build.fee;
+        this.shipment = build.shipment;
     }
 
     public static class PaymentBuilder{
@@ -27,7 +27,7 @@ public class Payment {
         private boolean result;
         private User user;
         private PaymentMethod paymentMethod;
-        private Fee fee;
+        private Shipment shipment;
 
         public PaymentBuilder id(String id){
             this.id=id;
@@ -49,8 +49,8 @@ public class Payment {
             this.paymentMethod=paymentMethod;
             return this;}
 
-        public PaymentBuilder fee(Fee fee){
-            this.fee=fee;
+        public PaymentBuilder shipment(Shipment shipment){
+            this.shipment=shipment;
             return this;}
 
         public Payment build(){
@@ -88,11 +88,11 @@ public class Payment {
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;}
 
-    public Fee getFee() {
-        return fee;}
+    public Shipment getShipment() {
+        return shipment;}
 
-    public void setFee(Fee fee) {
-        this.fee = fee;}
+    public void setShipment(Shipment shipment) {
+        this.shipment = shipment;}
 
 
 }

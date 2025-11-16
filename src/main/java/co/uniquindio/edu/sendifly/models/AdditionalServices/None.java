@@ -10,6 +10,6 @@ public class None implements AdditionalService {
 
     @Override
     public String getName() {
-        return "None";
+        return "Ninguno";
     }
 }

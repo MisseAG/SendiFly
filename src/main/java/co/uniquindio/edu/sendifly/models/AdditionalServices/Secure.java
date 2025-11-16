@@ -10,6 +10,6 @@ public class Secure implements AdditionalService {
 
     @Override
     public String getName() {
-        return "Secure";
+        return "Seguro";
     }
 }

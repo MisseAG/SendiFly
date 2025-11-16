@@ -1,21 +1,21 @@
 package co.uniquindio.edu.sendifly.models;
 
 import co.uniquindio.edu.sendifly.models.AdditionalServices.AdditionalService;
-import co.uniquindio.edu.sendifly.models.Priorities.ShippingPriority;
 import co.uniquindio.edu.sendifly.models.ShippingStatus.ShippingStatus;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Shipment {
     private String id;
-    private String origin;
-    private String destination;
+    private Address origin;
+    private Address destination;
     private LocalDate orderDate;
-    private LocalTime deliveryDate;
+    private LocalDateTime deliveryDate;
+    private double price;
     private AdditionalService additionalService;
     private ShippingStatus shippingStatus;
-    private ShippingPriority shippingPriority;
     private Pack pack;
 
     public Shipment(ShipmentBuilder build) {
@@ -24,32 +24,32 @@ public class Shipment {
         this.destination = build.destination;
         this.orderDate = build.orderDate;
         this.deliveryDate = build.deliveryDate;
+        this.price = build.price;
         this.additionalService = build.additionalService;
         this.shippingStatus = build.shippingStatus;
-        this.shippingPriority = build.shippingPriority;
         this.pack = build.pack;
     }
 
     public static class ShipmentBuilder {
         public String id;
-        public String origin;
-        public String destination;
+        public Address origin;
+        public Address destination;
         public LocalDate orderDate;
-        public LocalTime deliveryDate;
+        public LocalDateTime deliveryDate;
+        public double price;
         public AdditionalService additionalService;
         public ShippingStatus shippingStatus;
-        public ShippingPriority shippingPriority;
         public Pack pack;
 
         public ShipmentBuilder id(String id) {
             this.id = id;
             return this;}
 
-        public ShipmentBuilder origin(String origin) {
+        public ShipmentBuilder origin(Address origin) {
             this.origin = origin;
             return this;}
 
-        public ShipmentBuilder destination(String destination) {
+        public ShipmentBuilder destination(Address destination) {
             this.destination = destination;
             return this;}
 
@@ -57,8 +57,12 @@ public class Shipment {
             this.orderDate = orderDate;
             return this;}
 
-        public ShipmentBuilder deliveryDate(LocalTime deliveryDate) {
+        public ShipmentBuilder deliveryDate(LocalDateTime deliveryDate) {
             this.deliveryDate = deliveryDate;
+            return this;}
+
+        public ShipmentBuilder price(double price) {
+            this.price = price;
             return this;}
 
         public ShipmentBuilder additionalService(AdditionalService additionalService) {
@@ -69,9 +73,6 @@ public class Shipment {
             this.shippingStatus = shippingStatus;
             return this;}
 
-        public ShipmentBuilder shippingPriority(ShippingPriority shippingPriority) {
-            this.shippingPriority = shippingPriority;
-            return this;}
 
         public ShipmentBuilder pack(Pack pack) {
             this.pack = pack;
@@ -88,16 +89,16 @@ public class Shipment {
     public void setId(String id) {
         this.id = id;}
 
-    public String getOrigin() {
+    public Address getOrigin() {
         return origin;}
 
-    public void setOrigin(String origin) {
+    public void setOrigin(Address origin) {
         this.origin = origin;}
 
-    public String getDestination() {
+    public Address getDestination() {
         return destination;}
 
-    public void setDestination(String destination) {
+    public void setDestination(Address destination) {
         this.destination = destination;}
 
     public LocalDate getOrderDate() {
@@ -106,11 +107,18 @@ public class Shipment {
     public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;}
 
-    public LocalTime getDeliveryDate() {
+    public LocalDateTime getDeliveryDate() {
         return deliveryDate;}
 
-    public void setDeliveryDate(LocalTime deliveryDate) {
+    public void setDeliveryDate(LocalDateTime deliveryDate) {
         this.deliveryDate = deliveryDate;}
+
+    public double getPrice() {
+        return price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public AdditionalService getAdditionalService() {
         return additionalService;}
@@ -124,26 +132,24 @@ public class Shipment {
     public void setShippingStatus(ShippingStatus shippingStatus) {
         this.shippingStatus = shippingStatus;}
 
-    public ShippingPriority getShippingPriority() {
-        return shippingPriority;}
-
-    public void setShippingPriority(ShippingPriority shippingPriority) {
-        this.shippingPriority = shippingPriority;}
-
     public Pack getPack() {
         return pack;}
 
     public void setPack(Pack pack) {
         this.pack = pack;}
 
-    // public float getShippingPrice(){
-        //float price= this.pack.getPrice();
-        // float increaseByVolume= (this.pack.getHeight()*this.pack.getWidth()*this.pack.getLength())/500;
-        // float increaseByWeight= (float) (this.pack.getWeight()/0.99);
-        // price= price + price * increaseByVolume * increaseByWeight;
-        //price= price + price * this.additionalService.rateIncrease();
-       // return price + price * this.shippingPriority.rateIncrease();
-   // }
+
+    public boolean isDelivered() {
+        return shippingStatus.getName().equals("Delivered");
+    }
+
+    public double getTotalWeight() {
+        if (pack != null){
+            return pack.getWeight();
+        }
+        return 0;
+    }
+
 
 
 }

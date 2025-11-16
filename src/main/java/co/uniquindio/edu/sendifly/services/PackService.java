@@ -11,17 +11,12 @@ public class PackService {
 
     private final PackRepository packageRepository = PackRepository.getInstance();
 
-    public void registerPackage(String product, float price, float height, float volume) {
-        if (product == null || product.isBlank()) {
-            throw new IllegalArgumentException("[PackageService] Product name is required");
-        }
+    public void registerPackage(float price, float height, float volume) {
 
         String id = generatePackageId();
 
         Pack pack = new Pack.PackageBuilder()
                 .id(id)
-                .product(product)
-                .price(price)
                 .weight(height)
                 .volume(volume)
                 .build();

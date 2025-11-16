@@ -7,11 +7,13 @@ import co.uniquindio.edu.sendifly.models.User;
 import co.uniquindio.edu.sendifly.repositories.PersonRepository;
 import co.uniquindio.edu.sendifly.services.PersonService;
 import co.uniquindio.edu.sendifly.utils.NavigationUtil;
-
+import co.uniquindio.edu.sendifly.session.SessionManager;
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +34,7 @@ public class LoginViewController implements Initializable {
 
     private PersonRepository personRepository;
     private PersonService personService;
+    private SessionManager sessionManager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,6 +45,7 @@ public class LoginViewController implements Initializable {
 
         personRepository = PersonRepository.getInstance();
         personService = PersonService.getInstance();
+        sessionManager = SessionManager.getInstance();
 
     }
 
@@ -60,9 +64,14 @@ public class LoginViewController implements Initializable {
             return;
         }
 
-        if (validarCredenciales(email, password, role)) {
+        Person person = validarCredenciales(email, password, role);
+        if (person != null) {
             try {
+                if (person instanceof User){
+                    sessionManager.login((User) person);
+                }
                 redirigirSegunRol(role);
+
             } catch (IOException e) {
                 mostrarAlerta(Alert.AlertType.ERROR,
                         "Error de navegación",
@@ -77,7 +86,7 @@ public class LoginViewController implements Initializable {
         }
     }
 
-    private boolean validarCredenciales(String username, String password, String role) {
+    private Person validarCredenciales(String username, String password, String role) {
         try {
 
             System.out.println("Buscando: " + username + " | Pass: " + password + " | Role: " + role);
@@ -85,28 +94,31 @@ public class LoginViewController implements Initializable {
             Person person = personRepository.findByEmail(username);
 
             System.out.println("Persona encontrada: " + (person != null ? person.getEmail() : "null"));
-            // Verificar si existe
 
+            // Verificar si existe
             if (person == null) {
                 System.out.println("No se encontró usuario");
-                return false;
+                return null;
             }
 
             // Verificar contraseña
             if (!person.getPassword().equals(password)) {
                 System.out.println("Contraseña incorrecta");
-                return false;
+                return null;
             }
 
             // Verificar rol
             boolean rolValido = verificarRol(person, role);
             System.out.println("Rol válido: " + rolValido);
 
-            return rolValido;
+            if (rolValido) {
+                return person;
+            }
+            return null;
 
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 

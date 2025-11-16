@@ -74,8 +74,8 @@ public class ViewUserController implements Initializable{
     @FXML
     private void handleNewQuote(ActionEvent event) {
         System.out.println("Nueva cotización");
-        String path = "/co/uniquindio/edu/sendifly/views/user/CotizacionView.fxml";
-        String title = "SendiFly-Cotización";
+        String path = "/co/uniquindio/edu/sendifly/views/user/crearEnvioView.fxml";
+        String title = "SendiFly-Envío";
         //Usa cualquier node
         Node node = userGreetingLabel;
         NavigationUtil.navigateToScene(node, path, title,400 ,600);

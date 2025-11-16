@@ -11,7 +11,8 @@ public class App extends Application{
 
         @Override
         public void start(Stage stage) throws IOException {
-            FXMLLoader fxmlLoader = new FXMLLoader(AppTest.class.getResource("/co/uniquindio/edu/sendifly/views/MainView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(AppTest.class.getResource("/co/uniquindio/edu/sendifly/views" +
+                    "/MainView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 600);
             stage.setTitle("SendiFly");
             stage.setScene(scene);

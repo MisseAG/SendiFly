@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.sendifly.controllers.QuotationController">
+    <children>
+        <!-- HEADER -->
+        <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="10.0" style="-fx-background-color: #e12a26; -fx-padding: 0 15 0 15;">
+            <children>
+                <!-- Back Button -->
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBack" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 24px;" text="←">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Button>
+
+                <!-- Logo/App Name -->
+                <ImageView fitHeight="52.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/SENDIFLY.png" />
+                    </image>
+                </ImageView>
+
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- Title -->
+                <Label text="Nueva Cotización" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+
+                <!-- Spacer for centering -->
+                <Region HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+            <content>
+                <!-- MAIN CONTENT -->
+                <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #d8d8d8; -fx-padding: 20;">
+                    <children>
+                        <!-- Form Section -->
+                        <VBox alignment="CENTER" maxWidth="600.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                            <children>
+                                <Label text="Datos del Paquete" textFill="#333333">
+                                    <font>
+                                        <Font name="System Bold" size="22.0" />
+                                    </font>
+                                </Label>
+
+                                <!--  de Origen -->
+                                <VBox spacing="8.0">
+                                    <children>
+                                        <Label text="Origen" textFill="#333333">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="origenTextField" promptText="Ej: Calle 13-13" style="-fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </TextField>
+                                    </children>
+                                </VBox>
+
+                                <!--  de Destino -->
+                                <VBox spacing="8.0">
+                                    <children>
+                                        <Label text="Destino" textFill="#333333">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="destinoTextField" promptText="Ej: Calle 21-15" style="-fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </TextField>
+                                    </children>
+                                </VBox>
+
+                                <!-- Peso y Volumen en dos columnas -->
+                                <HBox spacing="15.0">
+                                    <children>
+                                        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Peso (kg)" textFill="#333333">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="pesoTextField" promptText="0.0" style="-fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </TextField>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Volumen (m³)" textFill="#333333">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="volumenTextField" promptText="0.0" style="-fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </TextField>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <!-- Prioridad -->
+                                <VBox spacing="8.0">
+                                    <children>
+                                        <Label text="Prioridad" textFill="#333333">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <ComboBox fx:id="prioridadComboBox" maxWidth="1.7976931348623157E308" promptText="Seleccione prioridad" style="-fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                                            <padding>
+                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                            </padding>
+                                        </ComboBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Botón Calcular -->
+                                <Button fx:id="calcularButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCalcular" prefHeight="50.0" style="-fx-background-color: #ee9536; -fx-text-fill: white; -fx-background-radius: 10;" text="💰 Calcular Tarifa">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Button>
+                            </children>
+                        </VBox>
+
+                        <!-- Result Section -->
+                        <VBox fx:id="resultadoVBox" alignment="CENTER" managed="false" maxWidth="600.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 2);" visible="false">
+                            <children>
+                                <Label text="💵 Tarifa Calculada" textFill="#333333">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Label>
+
+                                <!-- Precio Display -->
+                                <VBox alignment="CENTER" spacing="5.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-padding: 20;">
+                                    <children>
+                                        <Label text="Precio Total" textFill="#666666">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <HBox alignment="CENTER" spacing="5.0">
+                                            <children>
+                                                <Label text="'$'" textFill="#e12a26">
+                                                    <font>
+                                                        <Font name="System Bold" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="precioLabel" text="0.00" textFill="#e12a26">
+                                                    <font>
+                                                        <Font name="System Bold" size="36.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                        <Label fx:id="detalleLabel" text="Envío estándar" textFill="#999999">
+                                            <font>
+                                                <Font size="12.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+
+                                <!-- Detalles del cálculo -->
+                                <VBox spacing="8.0" style="-fx-padding: 10;">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                            <children>
+                                                <Label text="📍" />
+                                                <Label fx:id="rutaLabel" text="Ruta: "  textFill="#666666">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                            <children>
+                                                <Label text="📦" />
+                                                <Label fx:id="dimensionesLabel" text="Peso: kg | Volumen: m³" textFill="#666666">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                            <children>
+                                                <Label text="⚡" />
+                                                <Label fx:id="prioridadLabel" text="Prioridad: Normal" textFill="#666666">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Botón Crear Envío -->
+                                <Button fx:id="crearEnvioButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCrearEnvio" prefHeight="50.0" style="-fx-background-color: #e12a26; -fx-text-fill: white; -fx-background-radius: 10;" text="📦 Crear Envío con esta Tarifa">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Button>
+
+                                <!-- Botón Nueva Cotización -->
+                                <Button fx:id="nuevaCotizacionButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNuevaCotizacion" prefHeight="45.0" style="-fx-background-color: transparent; -fx-text-fill: #ee9536; -fx-border-color: #ee9536; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10;" text="🔄 Nueva Cotización">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+
+                        <!-- Spacer -->
+                        <Region VBox.vgrow="ALWAYS" />
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</VBox>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.uniquindio.edu.sendifly.controllers.ViewAdminController"
+      stylesheets="@../css/adminstyle.css"
+      styleClass="root-container">
+
+    <!-- HEADER -->
+    <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15">
+        <padding>
+            <Insets left="15" right="15" top="10" bottom="10"/>
+        </padding>
+
+        <!-- Logo -->
+        <ImageView fitHeight="45" fitWidth="110" preserveRatio="true">
+            <image>
+                <Image url="@../images/SENDIFLY.png" />
+            </image>
+        </ImageView>
+
+        <!-- Spacer -->
+        <Region HBox.hgrow="ALWAYS" />
+
+        <!-- Título -->
+        <Label text="Panel de Administración" styleClass="header-title">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+
+        <!-- Spacer -->
+        <Region HBox.hgrow="ALWAYS" />
+
+        <!-- Menú de Usuario -->
+        <MenuButton text="👤" styleClass="user-menu">
+            <items>
+                <MenuItem fx:id="menuProfile" text="⚙️ Configurar Perfil" onAction="#handleProfile"/>
+                <MenuItem fx:id="menuLogout" text="🚪 Cerrar Sesión" onAction="#handleLogout"/>
+            </items>
+        </MenuButton>
+    </HBox>
+
+    <!-- CONTENIDO: Nav + Dashboard -->
+    <SplitPane dividerPositions="0.25" VBox.vgrow="ALWAYS" styleClass="split-container">
+
+        <!-- PANEL LATERAL DE NAVEGACIÓN -->
+        <VBox styleClass="nav-panel" spacing="0">
+
+            <!-- Título de Navegación -->
+            <HBox styleClass="nav-header" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="15" bottom="15" left="15" right="15"/>
+                </padding>
+                <Label text="📋 Navegación" styleClass="nav-title">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+            </HBox>
+
+            <!-- Accordion de Navegación -->
+            <Accordion VBox.vgrow="ALWAYS" styleClass="nav-accordion">
+                <panes>
+                <!-- Gestión de Usuarios -->
+                <TitledPane text="👥 Gestión Usuarios" styleClass="nav-section">
+                    <VBox spacing="8" styleClass="nav-buttons-container">
+                        <padding>
+                            <Insets top="10" bottom="10" left="10" right="10"/>
+                        </padding>
+                        <Button fx:id="btnClientes" text="👤 Clientes"
+                                styleClass="nav-button" maxWidth="Infinity"
+                                onAction="#handleClientes"/>
+                        <Button fx:id="btnRepartidores" text="🚚 Repartidores"
+                                styleClass="nav-button" maxWidth="Infinity"
+                                onAction="#handleRepartidores"/>
+                    </VBox>
+                </TitledPane>
+
+                <!-- Gestión de Envíos -->
+                <TitledPane text="📦 Gestión Envíos" styleClass="nav-section">
+                    <VBox spacing="8" styleClass="nav-buttons-container">
+                        <padding>
+                            <Insets top="10" bottom="10" left="10" right="10"/>
+                        </padding>
+                        <Button fx:id="btnCRUD" text="✏️ CRUD Envíos"
+                                styleClass="nav-button" maxWidth="Infinity"
+                                onAction="#handleCRUD"/>
+                        <Button fx:id="btnConsultar" text="🔍 Consultar Envío"
+                                styleClass="nav-button" maxWidth="Infinity"
+                                onAction="#handleConsultar"/>
+                        <Button fx:id="btnAsignar" text="📌 Asignar Envío"
+                                styleClass="nav-button" maxWidth="Infinity"
+                                onAction="#handleAsignar"/>
+                    </VBox>
+                </TitledPane>
+
+                <!-- Charts -->
+                <TitledPane animated="false" text="📊 Estadísticas" styleClass="nav-section">
+                    <content>
+                        <VBox spacing="8" styleClass="nav-buttons-container">
+                            <padding>
+                                <Insets top="10" bottom="10" left="10" right="10"/>
+                            </padding>
+                            <Button fx:id="btnChart1" text="📈 Envíos Mensuales"
+                                    styleClass="nav-button" maxWidth="Infinity"
+                                    onAction="#handleChart1"/>
+                            <Button fx:id="btnChart2" text="📉 Top Rutas"
+                                    styleClass="nav-button" maxWidth="Infinity"
+                                    onAction="#handleChart2"/>
+                            <Button fx:id="btnChart3" text="📊 Rendimiento"
+                                    styleClass="nav-button" maxWidth="Infinity"
+                                    onAction="#handleChart3"/>
+                        </VBox>
+                    </content>
+                </TitledPane>
+                </panes>
+            </Accordion>
+        </VBox>
+
+        <!-- ÁREA DINÁMICA (DASHBOARD) -->
+        <VBox styleClass="dashboard-container">
+
+            <!-- Título del Dashboard -->
+            <HBox styleClass="dashboard-header" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="15" bottom="15" left="20" right="20"/>
+                </padding>
+                <Label fx:id="dashboardTitle" text="🏠 Dashboard" styleClass="dashboard-title">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </HBox>
+
+            <!-- Contenedor Dinámico -->
+            <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS"
+                        styleClass="dashboard-scroll">
+                <StackPane fx:id="contenedorDinamico" styleClass="contenedor-dinamico">
+                    <padding>
+                        <Insets top="20" bottom="20" left="20" right="20"/>
+                    </padding>
+
+                    <!-- Contenido por defecto (Dashboard inicial) -->
+                    <VBox alignment="CENTER" spacing="20">
+                        <Label text="Bienvenido al Panel de Administración"
+                               styleClass="welcome-title">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Selecciona una opción del menú lateral"
+                               styleClass="welcome-subtitle">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+
+                </StackPane>
+            </ScrollPane>
+        </VBox>
+
+    </SplitPane>
+
+</VBox>

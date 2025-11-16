@@ -12,102 +12,63 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginViewController implements Initializable {
 
-    @FXML
-    private Button btnLogin;
+    public static Person usuarioActual;
 
-    @FXML
-    private ChoiceBox<String> choiceRole;
-
-    @FXML
-    private PasswordField txtPassword;
-
-    @FXML
-    private TextField txtEmail;
+    @FXML private Button btnLogin;
+    @FXML private ChoiceBox<String> choiceRole;
+    @FXML private PasswordField txtPassword;
+    @FXML private TextField txtEmail;
 
     private PersonRepository personRepository;
     private PersonService personService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        //Inicializa choicebox
         choiceRole.getItems().addAll("Usuario", "Administrador", "Repartidor");
-        choiceRole.setValue("Usuario"); // Valor por defecto
-
+        choiceRole.setValue("Usuario");
         personRepository = PersonRepository.getInstance();
         personService = PersonService.getInstance();
-
     }
 
-    //
     @FXML
     private void handleLogin(ActionEvent event) {
-        // Obtener los datos ingresados
         String email = txtEmail.getText().trim();
         String password = txtPassword.getText();
         String role = choiceRole.getValue();
 
         if (email.isEmpty() || password.isEmpty() || role == null) {
-            mostrarAlerta(Alert.AlertType.WARNING,
-                    "Campos incompletos",
-                    "Por favor complete todos los campos");
+            mostrarAlerta(Alert.AlertType.WARNING,"Campos incompletos","Por favor complete todos los campos");
             return;
         }
 
         if (validarCredenciales(email, password, role)) {
+            // Guardar usuario logueado
+            usuarioActual = personRepository.findByEmail(email);
+
             try {
                 redirigirSegunRol(role);
             } catch (IOException e) {
-                mostrarAlerta(Alert.AlertType.ERROR,
-                        "Error de navegación",
-                        "No se pudo cargar la vista: " + e.getMessage());
+                mostrarAlerta(Alert.AlertType.ERROR,"Error de navegación","No se pudo cargar la vista: " + e.getMessage());
                 e.printStackTrace();
             }
         } else {
-            mostrarAlerta(Alert.AlertType.ERROR,
-                    "Credenciales incorrectas",
-                    "Usuario o contraseña incorrectos");
+            mostrarAlerta(Alert.AlertType.ERROR,"Credenciales incorrectas","Usuario o contraseña incorrectos");
             limpiarCampos();
         }
     }
 
-    private boolean validarCredenciales(String username, String password, String role) {
-        try {
-
-            System.out.println("Buscando: " + username + " | Pass: " + password + " | Role: " + role);
-            // Buscar persona por email
-            Person person = personRepository.findByEmail(username);
-
-            System.out.println("Persona encontrada: " + (person != null ? person.getEmail() : "null"));
-            // Verificar si existe
-
-            if (person == null) {
-                System.out.println("No se encontró usuario");
-                return false;
-            }
-
-            // Verificar contraseña
-            if (!person.getPassword().equals(password)) {
-                System.out.println("Contraseña incorrecta");
-                return false;
-            }
-
-            // Verificar rol
-            boolean rolValido = verificarRol(person, role);
-            System.out.println("Rol válido: " + rolValido);
-
-            return rolValido;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    private boolean validarCredenciales(String email, String password, String role) {
+        Person person = personRepository.findByEmail(email);
+        if (person == null) return false;
+        if (!person.getPassword().equals(password)) return false;
+        return verificarRol(person, role);
     }
 
     private boolean verificarRol(Person person, String role) {
@@ -120,7 +81,7 @@ public class LoginViewController implements Initializable {
     }
 
     private void redirigirSegunRol(String role) throws IOException {
-            NavigationUtil.navigateByRole(btnLogin, role);
+        NavigationUtil.navigateByRole(btnLogin, role);
     }
 
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {

@@ -7,6 +7,7 @@ import co.uniquindio.edu.sendifly.models.Person;
 import co.uniquindio.edu.sendifly.models.User;
 import co.uniquindio.edu.sendifly.repositories.PersonRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class PersonService {
@@ -127,6 +128,37 @@ public class PersonService {
 
     private String generateIdDelivery() {
         return "DelM_" + generateId();
+    }
+
+    public boolean updateUserProfile(String userId, String name, String email, String password) {
+        Optional<Person> personOpt = personRepository.getPerson(userId);
+
+        if (personOpt.isPresent() && personOpt.get() instanceof User) {
+            User user = (User) personOpt.get();
+
+            user.setName(name);
+            user.setEmail(email);
+
+            if (password != null && !password.isEmpty()) {
+                user.setPassword(password);
+            }
+
+            System.out.println("Perfil actualizado");
+            return true;
+        }
+
+        System.err.println("Usuario no encontrado");
+        return false;
+    }
+
+    public Optional<User> getUserById(String userId) {
+        Optional<Person> personOpt = personRepository.getPerson(userId);
+
+        if (personOpt.isPresent() && personOpt.get() instanceof User) {
+            return Optional.of((User) personOpt.get());
+        }
+
+        return Optional.empty();
     }
 }
 

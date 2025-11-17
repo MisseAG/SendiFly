@@ -41,6 +41,9 @@ public class CreateShipmentController {
     private ComboBox<ShippingPriority> prioridadComboBox;
 
     @FXML
+    private TextField precioProductoTextField;
+
+    @FXML
     private TextField volumenTextField;
 
     private final ShipmentService shipmentService = new ShipmentService();
@@ -55,40 +58,52 @@ public class CreateShipmentController {
     @FXML
     void handleCrear(ActionEvent event) {
         try {
+
             String origin = origenTextField.getText();
             String destination = destinoTextField.getText();
             ShippingPriority priority = prioridadComboBox.getValue();
-            String selectedPackId = volumenTextField.getText();
-            Pack pack = PackRepository.getInstance()
-                    .getPackage(selectedPackId)
-                    .orElseThrow(() -> new IllegalArgumentException("Paquete no encontrado por el ID: " + selectedPackId));
-            float finalPrice = shipmentService.calculateShippingPrice(pack, new None(), priority); // saber donde poner esto
 
-            /*precioLabel.setText("$" + finalPrice);
-            pack = new Pack.PackageBuilder()
-                    .id(pack.getId())
-                    .product(pack.getProduct())
-                    .price(finalPrice)
-                    .weight(pack.getWeight())
-                    .volume(pack.getVolume())
-                    .build(); */
+
+            String productName =  "Generic Product";
+            float productPrice = 0f;
+            try {
+            } catch (NumberFormatException ignored) {}
+
+            float weight = Float.parseFloat(pesoTextField.getText());
+            float volume = Float.parseFloat(volumenTextField.getText());
+
+            Pack pack = new Pack.PackageBuilder()
+                    .id(generatePackId())
+                    .product(productName)
+                    .price(productPrice)
+                    .weight(weight)
+                    .volume(volume)
+                    .build();
+
+
+            AdditionalService selectedService = new None();
+
+            float finalPrice = shipmentService.calculateShippingPrice(pack, selectedService, priority);
+            precioLabel.setText("$" + finalPrice);
 
             shipmentService.createShipment(
                     origin,
                     destination,
                     LocalDate.now(),
                     LocalTime.now(),
-                    new None(),
+                    selectedService,
                     new Requested(),
                     priority,
                     pack
             );
 
-            // se puede navegar con esto si todo sale bien
+            // Navegar si todo sale bien (sin modificar)
             String path = "/co/uniquindio/edu/sendifly/views/ViewUser.fxml";
             String title = "SendiFly - Dashboard";
             NavigationUtil.navigateToScene(crearEnvioBtn, path, title);
 
+        } catch (NumberFormatException e) {
+            showAlert("Invalid input", "Weight, volume and numeric fields must be valid numbers.");
         } catch (IllegalArgumentException e) {
             showAlert("Validation error", e.getMessage());
         } catch (Exception e) {
@@ -111,4 +126,9 @@ public class CreateShipmentController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    private String generatePackId() {
+        return "PACK-" + UUID.randomUUID();
+    }
+
 }

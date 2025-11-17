@@ -63,6 +63,7 @@ public class PersonService {
     public void registerPerson(String name, String email, String phone, String password, String role) {
         validateEmail(email);
         validatePassword(password);
+        validatePhone(phone);
 
         if (emailExists(email)) {
             throw new IllegalArgumentException("El email ya está registrado");
@@ -97,19 +98,30 @@ public class PersonService {
         personRepository.addPerson(person);
     }
 
-    private void validateEmail(String email){
+    public void validateEmail(String email){
         if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
             throw new IllegalArgumentException("Email inválido");
         }
     }
-    private void validatePassword(String password){
+    public void validatePassword(String password){
         if (password.length() < 6) {
             throw new IllegalArgumentException("La contraseña debe tener al menos 6 caracteres");
         }
     }
 
-    private boolean emailExists(String email) {
+    public void validatePhone(String phone) {
+        if (!phone.matches("\\d{10}")) {
+            throw new IllegalArgumentException("El número telefónico debe tener exactamente 10 dígitos numéricos.");
+        }
+    }
+
+    public boolean emailExists(String email) {
         return personRepository.findByEmail(email) != null;
+    }
+
+    public boolean emailExistsExcluding(String email, String excludeEmail) {
+        return PersonRepository.getInstance().getAll().stream()
+                .anyMatch(p -> p.getEmail().equalsIgnoreCase(email) && !p.getEmail().equalsIgnoreCase(excludeEmail));
     }
 
     private String generateId() {
@@ -117,15 +129,15 @@ public class PersonService {
     }
 
     private String generateIdUser() {
-        return "User_" + generateId();
+        return "User: " + generateId();
     }
 
     private String generateIdAdmin() {
-        return "Admin_" + generateId();
+        return "Admin: " + generateId();
     }
 
     private String generateIdDelivery() {
-        return "DelM_" + generateId();
+        return "DelM: " + generateId();
     }
 }
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.uniquindio.edu.sendifly.controllers.ShowUserController"
+            prefWidth="400" prefHeight="250">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <VBox spacing="15">
+        <Label text="📋 Detalles del Usuario" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+        <GridPane hgap="10" vgap="10">
+            <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Label fx:id="nombreLabel" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="Teléfono:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <Label fx:id="telefonoLabel" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="Correo:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <Label fx:id="correoLabel" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+            <Label text="Contraseña:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+            <Label fx:id="passwordLabel" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+        </GridPane>
+
+        <Button text="Cerrar" onAction="#handleCerrar" alignment="CENTER_RIGHT" />
+    </VBox>
+</AnchorPane>

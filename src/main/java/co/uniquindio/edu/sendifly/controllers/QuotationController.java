@@ -81,7 +81,7 @@ public class QuotationController {
 
         //después de creado se va a la vista de crear
         //ver en crear envio controller más comentarios
-        String path = "/co/uniquindio/edu/sendifly/views/user/crearEnvioView.fxml";
+        String path = "/co/uniquindio/edu/sendifly/views/user/CreateShipmentView.fxml";
         String title = "SendiFly-Envío";
         //Usa cualquier node
         Node node = backButton;

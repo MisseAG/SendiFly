@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.uniquindio.edu.sendifly.controllers.CreateUserController"
+            prefWidth="400" prefHeight="400">
+    <children>
+        <VBox spacing="12" alignment="CENTER" layoutX="50" layoutY="30"
+              AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+            <Label text="Crear Usuario" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+            <TextField fx:id="nameField" promptText="Nombre completo" />
+            <TextField fx:id="phoneField" promptText="Teléfono" />
+            <TextField fx:id="emailField" promptText="Correo electrónico (@mail.com)" />
+            <PasswordField fx:id="passwordField" promptText="Contraseña (mínimo 6 caracteres)" />
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Crear" onAction="#handleCreateUser" />
+                <Button text="Cancelar" onAction="#handleCancel" />
+            </HBox>
+
+            <Label fx:id="errorLabel" textFill="red" wrapText="true" />
+        </VBox>
+    </children>
+</AnchorPane>

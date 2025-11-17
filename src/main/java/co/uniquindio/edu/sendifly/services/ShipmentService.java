@@ -95,6 +95,8 @@ public class ShipmentService {
     private String generateShipmentId() {
         return "Envio: " + UUID.randomUUID();}
 
+
+    /*
     public float calculateShippingPrice(Pack pack, AdditionalService additionalService, ShippingPriority priority) {
         if (pack == null || additionalService == null || priority == null) {
             throw new IllegalArgumentException("[ShipmentService] Missing data for price calculation");
@@ -107,6 +109,18 @@ public class ShipmentService {
         adjustedPrice += adjustedPrice * priority.rateIncrease();
 
         return adjustedPrice;
+    }
+    */
+
+    public float calculateShippingPrice(Pack pack, AdditionalService additionalService, ShippingPriority priority){
+        if (pack == null || additionalService == null || priority == null) {
+            throw new IllegalArgumentException("[ShipmentService] ");
+          //  float increaseByVolume = (pack.getVolume()) / 500f;
+            //float increaseByWeight = pack.getWeight() / 0.99f;
+            //float price= increaseByWeight  + increaseByVolume;
+
+        }
+        return 0;
     }
 
 }

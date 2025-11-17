@@ -3,14 +3,14 @@ package co.uniquindio.edu.sendifly.models;
 public class Pack {
     private String id;
     private String product;
-    private float price;
+    //private float price;
     private float weight;
     private float volume;
 
     public Pack(PackageBuilder build){
         this.id = build.id;
         this.product = build.product;
-        this.price = build.price;
+        //this.price = build.price;
         this.weight = build.weight;
         this.volume = build.volume;
     }
@@ -60,11 +60,16 @@ public class Pack {
     public void setProduct(String product) {
         this.product = product;}
 
+    /*
     public float getPrice() {
         return price;}
+     */
 
+    /*
     public void setPrice(float price) {
         this.price = price;}
+
+    */
 
     public void setVolume(float Volume) {
         this.volume = volume;}

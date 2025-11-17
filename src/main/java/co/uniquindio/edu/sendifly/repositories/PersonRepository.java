@@ -45,7 +45,26 @@ public class PersonRepository {
         }throw new IllegalArgumentException("[PersonRepository]el usuario No existe");
     }
 
-    //falta update en service
+    public void updatePerson(Person updatedPerson) {
+        if (updatedPerson == null) {
+            throw new IllegalArgumentException("[PersonRepository] La persona no puede ser nula");
+        }
+
+        // Buscar la persona por ID
+        for (int i = 0; i < People.size(); i++) {
+            if (People.get(i).getId().equals(updatedPerson.getId())) {
+                // Reemplazar la persona en la lista
+                People.set(i, updatedPerson);
+                System.out.println("[PersonRepository] Persona actualizada: " + updatedPerson.getEmail());
+                return;
+            }
+        }
+
+        // Si llegamos aquí, la persona no existe
+        throw new IllegalArgumentException(
+                "[PersonRepository] No se puede actualizar: la persona con ID '" +
+                        updatedPerson.getId() + "' no existe");
+    }
 
     public Optional<Person> getPerson(String id) {
         for (Person p : People) {
@@ -81,4 +100,17 @@ public class PersonRepository {
         return null;
     }
 
+    public boolean existsByEmail(String email) {
+        return findByEmail(email) != null;
+    }
+
+
+    public boolean isEmailTakenByOther(String email, String excludeId) {
+        for (Person p : People) {
+            if (p.getEmail().equals(email) && !p.getId().equals(excludeId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

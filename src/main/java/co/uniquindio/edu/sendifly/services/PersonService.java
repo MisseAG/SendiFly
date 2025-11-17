@@ -175,6 +175,24 @@ public class PersonService {
         }
     }
 
+    public void updatePerson(Person person) {
+
+        if (!personRepository.existPerson(person)) {
+            throw new IllegalArgumentException("No existe");
+        }
+
+        String email = person.getEmail();
+        String id = person.getId();
+        if (personRepository.isEmailTakenByOther(email, id)) {
+            throw new IllegalArgumentException("Email en uso");
+        }
+        validateEmail(person.getEmail());
+
+        validatePassword(person.getPassword());
+
+        personRepository.updatePerson(person);
+    }
+
     private boolean emailExists(String email) {
         return personRepository.findByEmail(email) != null;
     }

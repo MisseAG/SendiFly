@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="724.0" prefWidth="1347.0"
+            style="-fx-background-color: linear-gradient(#F97F2A, #C22222);"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.uniquindio.edu.sendifly.controllers.ViewProfileConfigController">
+
+    <top>
+        <BorderPane prefHeight="129.0" style="-fx-background-color: ffffff;">
+            <left>
+                <ImageView fitHeight="129.0" fitWidth="200.0">
+                    <image>
+                        <Image url="@../../images/SENDIFLY.png" />
+                    </image>
+                    <BorderPane.margin>
+                        <Insets left="50.0" />
+                    </BorderPane.margin>
+                </ImageView>
+            </left>
+            <right>
+                <StackPane prefHeight="130.0">
+                    <children>
+                        <Label style="-fx-text-fill: linear-gradient(#F97F2A, #C22222);" text="CONFIGURAR PERFIL">
+                            <font>
+                                <Font name="Yu Gothic UI Semibold" size="54.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </StackPane>
+            </right>
+        </BorderPane>
+    </top>
+
+    <center>
+        <StackPane>
+            <children>
+                <VBox alignment="CENTER_LEFT" fillWidth="false"
+                      prefHeight="534.0" prefWidth="1234.0"
+                      style="-fx-background-color: ffffff; -fx-background-radius: 50;">
+                    <children>
+                        <!-- NOMBRE -->
+                        <HBox alignment="CENTER_LEFT" spacing="30.0">
+                            <children>
+                                <Label text="NOMBRE DE USUARIO" prefHeight="50.0" prefWidth="394.0">
+                                    <font><Font name="Yu Gothic UI Semibold" size="34.0" /></font>
+                                    <padding><Insets left="40.0" /></padding>
+                                </Label>
+                                <TextField fx:id="nameField" prefHeight="44.0" prefWidth="538.0">
+                                    <cursor><Cursor fx:constant="TEXT" /></cursor>
+                                </TextField>
+                                <Button text="CAMBIAR" prefHeight="46.0" prefWidth="202.0"
+                                        onAction="#onChangeName">
+                                    <font><Font name="Yu Gothic UI Semibold" size="20.0" /></font>
+                                    <effect><InnerShadow /></effect>
+                                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                                </Button>
+                            </children>
+                        </HBox>
+
+                        <!-- EMAIL -->
+                        <HBox alignment="CENTER_LEFT" spacing="30.0">
+                            <children>
+                                <Label text="E-MAIL" prefHeight="50.0" prefWidth="394.0">
+                                    <font><Font name="Yu Gothic UI Semibold" size="34.0" /></font>
+                                    <padding><Insets left="40.0" /></padding>
+                                </Label>
+                                <TextField fx:id="emailField" prefHeight="44.0" prefWidth="538.0">
+                                    <cursor><Cursor fx:constant="TEXT" /></cursor>
+                                </TextField>
+                                <Button text="CAMBIAR" prefHeight="46.0" prefWidth="202.0"
+                                        onAction="#onChangeEmail">
+                                    <font><Font name="Yu Gothic UI Semibold" size="20.0" /></font>
+                                    <effect><InnerShadow /></effect>
+                                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                                </Button>
+                            </children>
+                        </HBox>
+
+                        <!-- CONTRASEÑA -->
+                        <HBox alignment="CENTER_LEFT" spacing="30.0">
+                            <children>
+                                <Label text="CONTRASEÑA" prefHeight="50.0" prefWidth="394.0">
+                                    <font><Font name="Yu Gothic UI Semibold" size="34.0" /></font>
+                                    <padding><Insets left="40.0" /></padding>
+                                </Label>
+                                <PasswordField fx:id="passwordField" prefHeight="44.0" prefWidth="538.0">
+                                    <cursor><Cursor fx:constant="TEXT" /></cursor>
+                                </PasswordField>
+                                <Button text="CAMBIAR" prefHeight="46.0" prefWidth="202.0"
+                                        onAction="#onChangePassword">
+                                    <font><Font name="Yu Gothic UI Semibold" size="20.0" /></font>
+                                    <effect><InnerShadow /></effect>
+                                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                                </Button>
+                            </children>
+                        </HBox>
+
+                        <!-- BOTÓN REGRESAR -->
+                        <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                            <padding>
+                                <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+                            </padding>
+                            <children>
+                                <Button fx:id="btnBack" text="REGRESAR"
+                                        prefHeight="46.0" prefWidth="202.0"
+                                        onAction="#onBackToUserView">
+                                    <font><Font name="Yu Gothic UI Semibold" size="20.0" /></font>
+                                    <effect><InnerShadow /></effect>
+                                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                                </Button>
+                            </children>
+                        </HBox>
+
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

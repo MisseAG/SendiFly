@@ -27,10 +27,10 @@ public class CreateShipmentController {
     private Button crearEnvioBtn;
 
     @FXML
-    private ComboBox<String> origenComboBox; // ← CAMBIO: de TextField a ComboBox
+    private ComboBox<String> origenComboBox;
 
     @FXML
-    private ComboBox<String> destinoComboBox; // ← CAMBIO: de TextField a ComboBox
+    private ComboBox<String> destinoComboBox;
 
     @FXML
     private TextField pesoTextField;
@@ -232,7 +232,7 @@ public class CreateShipmentController {
             // Mostrar confirmación
             showSuccess("Envío creado exitosamente",
                     "ID del envío: " + shipment.getId() +
-                            "\nPrecio: $" + String.format("%.2f", shipment.getPrice()));
+                            "\nPrecio: " + String.format("%.2f", shipment.getPrice()));
 
             // Limpiar formulario
             limpiarFormulario();

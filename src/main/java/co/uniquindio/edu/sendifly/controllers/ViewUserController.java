@@ -1,5 +1,7 @@
 package co.uniquindio.edu.sendifly.controllers;
 
+import co.uniquindio.edu.sendifly.models.User;
+import co.uniquindio.edu.sendifly.session.SessionManager;
 import co.uniquindio.edu.sendifly.utils.NavigationUtil;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -12,7 +14,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewUserController implements Initializable{
+public class ViewUserController implements Initializable {
 
 
     @FXML
@@ -51,15 +53,21 @@ public class ViewUserController implements Initializable{
     @FXML
     private Button paymentsHistorialBtn;
 
+    private SessionManager sessionManager;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        sessionManager = SessionManager.getInstance();
+        actualizarSaludo();
     }
 
     @FXML
     private void handleProfileSettings(ActionEvent event) {
         System.out.println("Configuración de perfil clicada");
+        String path = "/co/uniquindio/edu/sendifly/views/user/ViewProfileConfig.fxml";
+        String title = "SendiFly-Configurar Perfil";
+        Node node = userGreetingLabel;
+        NavigationUtil.navigateToScene(node, path, title);
     }
 
     @FXML
@@ -68,7 +76,7 @@ public class ViewUserController implements Initializable{
         String title = "SendiFly-Home";
         //Usa cualquier node
         Node node = userGreetingLabel;
-        NavigationUtil.navigateToScene(node, path, title,400 ,600);
+        NavigationUtil.navigateToScene(node, path, title, 400, 600);
     }
 
     @FXML
@@ -78,7 +86,7 @@ public class ViewUserController implements Initializable{
         String title = "SendiFly-Envío";
         //Usa cualquier node
         Node node = userGreetingLabel;
-        NavigationUtil.navigateToScene(node, path, title,400 ,600);
+        NavigationUtil.navigateToScene(node, path, title, 400, 600);
     }
 
     @FXML
@@ -88,7 +96,7 @@ public class ViewUserController implements Initializable{
         String title = "SendiFly-Envío";
         //Usa cualquier node
         Node node = userGreetingLabel;
-        NavigationUtil.navigateToScene(node, path, title,400 ,600);
+        NavigationUtil.navigateToScene(node, path, title, 400, 600);
     }
 
     @FXML
@@ -97,31 +105,31 @@ public class ViewUserController implements Initializable{
     }
 
     @FXML
-    private void handlePaymentMethods(ActionEvent event){
+    private void handlePaymentMethods(ActionEvent event) {
         String path = "/co/uniquindio/edu/sendifly/views/user/FormasDePago.fxml";
         String title = "SendiFly-FormasDePago";
         //Usa cualquier node
         Node node = userGreetingLabel;
-        NavigationUtil.navigateToScene(node, path, title,400 ,600);
+        NavigationUtil.navigateToScene(node, path, title, 400, 600);
     }
 
     @FXML
-    private void handleAddresses(ActionEvent event){
+    private void handleAddresses(ActionEvent event) {
         String path = "/co/uniquindio/edu/sendifly/views/user/direccionesView.fxml";
         String title = "SendiFly-Envío";
         //Usa cualquier node
         Node node = userGreetingLabel;
-        NavigationUtil.navigateToScene(node, path, title,400 ,600);
+        NavigationUtil.navigateToScene(node, path, title, 400, 600);
     }
 
 
     @FXML
-    private void handlePaymentsHistorial (ActionEvent event){
+    private void handlePaymentsHistorial(ActionEvent event) {
         String path = "/co/uniquindio/edu/sendifly/views/user/FormasDePago.fxml";
         String title = "SendiFly-Historial";
         //Usa cualquier node
         Node node = userGreetingLabel;
-        NavigationUtil.navigateToScene(node, path, title,400 ,600);
+        NavigationUtil.navigateToScene(node, path, title, 400, 600);
     }
 
     @FXML
@@ -134,4 +142,12 @@ public class ViewUserController implements Initializable{
         System.out.println("Ver historial");
     }
 
+    private void actualizarSaludo() {
+        if (sessionManager.isLoggedIn()) {
+            User currentUser = sessionManager.getCurrentUser();
+            userGreetingLabel.setText("Hola, " + currentUser.getName());
+        } else {
+            userGreetingLabel.setText("Hola, Usuario");
+        }
+    }
 }

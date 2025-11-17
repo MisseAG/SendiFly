@@ -1,8 +1,7 @@
 package co.uniquindio.edu.sendifly.controllers;
 
 import co.uniquindio.edu.sendifly.dtos.UserDTO;
-import co.uniquindio.edu.sendifly.models.Person;
-import co.uniquindio.edu.sendifly.models.User;
+import co.uniquindio.edu.sendifly.models.*;
 import co.uniquindio.edu.sendifly.repositories.PersonRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,7 +101,7 @@ public class CrudUsersController {
                 UserDTO dto = UserDTO.fromUser((User) person);
                 userObservable.add(dto);
             }
-        }
+        }actualizarContadorUsuarios();
     }
 
     @FXML
@@ -173,6 +172,7 @@ public class CrudUsersController {
 
             CreateUserController controller = loader.getController();
             controller.setUserObservable(userObservable); // Conectamos la tabla
+            controller.setOnUserChange(() -> actualizarContadorUsuarios());
 
             Stage stage = new Stage();
             stage.setTitle("Crear nuevo usuario");
@@ -206,11 +206,22 @@ public class CrudUsersController {
             if (user != null) {
                 PersonRepository.getInstance().removePerson(user);
                 userObservable.remove(seleccionado);
+                actualizarContadorUsuarios();
             }
         }
     }
 
-    @FXML private TextField idSearchField;
-    @FXML private Label buscarErrorLabel;
+    private void actualizarContadorUsuarios() {
+        int totalUsuarios = PersonRepository.getInstance().countPeople();
+        for (Person person : PersonRepository.getInstance().getAll()) {
+            if (person instanceof Administrator) {
+                totalUsuarios--;
+            }
+            if (person instanceof DeliveryMan) {
+                totalUsuarios--;
+            }
+        }
+        lblTotalRegistros.setText("Total de registros: " + totalUsuarios);
+    }
 
 }

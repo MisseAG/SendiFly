@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox spacing="15" styleClass="crud-container" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.sendifly.controllers.CrudDeliverysController">
+<VBox spacing="15" styleClass="crud-container" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.sendifly.controllers.CrudDeliveriesController">
 
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
@@ -26,7 +26,7 @@
     </HBox>
 
     <!-- Tabla de Usuarios -->
-    <TableView fx:id="tablaUsuarios" styleClass="data-table" VBox.vgrow="ALWAYS">
+    <TableView fx:id="tablaRepartidores" styleClass="data-table" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="colId" prefWidth="60" styleClass="table-column-id" text="ID" />
             <TableColumn fx:id="colNombreCompleto" prefWidth="200" styleClass="table-column-text" text="Nombre Completo" />

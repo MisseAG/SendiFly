@@ -107,12 +107,6 @@ public class ViewUserController implements Initializable {
         User currentUser = sessionManager.getCurrentUser();
         List<Shipment> enviosPendientes = currentUser.getShipmentsList();
 
-        System.out.println("=== CARGANDO ENVÍOS ===");
-        System.out.println("Usuario: " + currentUser.getEmail());
-        System.out.println("Envíos del usuario: " + enviosPendientes.size());
-        System.out.println("Tabla visible antes: " + tablaEnvios.isVisible());
-        System.out.println("Items en tabla antes: " + tablaEnvios.getItems().size());
-
         if (enviosPendientes.isEmpty()){
             noEnviosLabel.setVisible(true);
             tablaEnvios.setVisible(false);
@@ -120,19 +114,6 @@ public class ViewUserController implements Initializable {
             noEnviosLabel.setVisible(false);
             tablaEnvios.setVisible(true);
             tablaEnvios.getItems().setAll(enviosPendientes);
-
-            System.out.println("Items en tabla después: " + tablaEnvios.getItems().size());
-            System.out.println("Tabla visible después: " + tablaEnvios.isVisible());
-        }
-        System.out.println("===================");
-        if (!enviosPendientes.isEmpty()) {
-            noEnviosLabel.setVisible(false);
-            tablaEnvios.setVisible(true);
-            tablaEnvios.getItems().setAll(enviosPendientes);
-
-            System.out.println("Altura tabla: " + tablaEnvios.getHeight());
-            System.out.println("Ancho tabla: " + tablaEnvios.getWidth());
-            System.out.println("Posición Y: " + tablaEnvios.getLayoutY());
         }
     }
 
@@ -186,11 +167,6 @@ public class ViewUserController implements Initializable {
 
     private void configurarTabla() {
 
-        System.out.println("=== CONFIGURANDO TABLA ===");
-        System.out.println("Tabla es null? " + (tablaEnvios == null));
-        System.out.println("colIdEnvio es null? " + (colIdEnvio == null));
-        System.out.println("colOrigen es null? " + (colOrigen == null));
-
         colIdEnvio.setCellValueFactory(
                 data -> {
                     System.out.println("CellValueFactory ID ejecutándose para: " + data.getValue().getId());
@@ -218,7 +194,6 @@ public class ViewUserController implements Initializable {
                 data -> new SimpleObjectProperty<>(data.getValue().getPrice())
         );
 
-        System.out.println("=== FIN CONFIGURACIÓN ===");
 
         agregarBotonesAccion();
     }
@@ -227,6 +202,7 @@ public class ViewUserController implements Initializable {
         System.out.println("Modificar envío: " + shipment.getId());
         String title = "SendiFly - Modificar envío";
         String path = "/co/uniquindio/edu/sendifly/views/user/CreateShipmentView.fxml";
+        NavigationUtil.navigateToScene(addressesBtn, path, title);
     }
 
     private void cancelarEnvio(Shipment shipment) {

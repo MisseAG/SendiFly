@@ -59,4 +59,8 @@ public class DeliveryMan extends Person{
         }
     }
 
+    @Override
+    public String getRol(){
+        return "Repartidor";
+    }
 }

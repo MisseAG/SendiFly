@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class PersonRepository {
 
-    private static PersonRepository instance= new PersonRepository();
+    private static PersonRepository instance;
 
     private ArrayList<Person> People;
 
@@ -75,7 +75,7 @@ public class PersonRepository {
         return Optional.empty(); // optional es clave, pues service ya decide que hacer si el usuario no existe ;)
     }
 
-    public ArrayList<Person> getAllPeople(){
+    public ArrayList<Person> getAll(){
         return new ArrayList<>(People);
     }
 

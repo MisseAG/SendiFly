@@ -18,6 +18,7 @@ public class Shipment {
     private ShippingStatus shippingStatus;
     private Pack pack;
 
+
     public Shipment(ShipmentBuilder build) {
         this.id = build.id;
         this.origin = build.origin;

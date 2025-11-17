@@ -17,7 +17,7 @@ public class Shipment {
     private AdditionalService additionalService;
     private ShippingStatus shippingStatus;
     private Pack pack;
-    private float price;
+
 
     public Shipment(ShipmentBuilder build) {
         this.id = build.id;
@@ -29,7 +29,6 @@ public class Shipment {
         this.additionalService = build.additionalService;
         this.shippingStatus = build.shippingStatus;
         this.pack = build.pack;
-        this.price= 10000F;
     }
 
     public static class ShipmentBuilder {

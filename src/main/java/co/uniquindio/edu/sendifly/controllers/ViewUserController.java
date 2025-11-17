@@ -82,7 +82,7 @@ public class ViewUserController implements Initializable {
     @FXML
     private void handleNewQuote(ActionEvent event) {
         System.out.println("Nueva cotización");
-        String path = "/co/uniquindio/edu/sendifly/views/user/crearEnvioView.fxml";
+        String path = "/co/uniquindio/edu/sendifly/views/user/CreateShipmentView.fxml";
         String title = "SendiFly-Envío";
         //Usa cualquier node
         Node node = userGreetingLabel;
@@ -125,7 +125,7 @@ public class ViewUserController implements Initializable {
 
     @FXML
     private void handlePaymentsHistorial (ActionEvent event){
-        String path = "/co/uniquindio/edu/sendifly/views/user/FormasDePago.fxml";
+        String path = "/co/uniquindio/edu/sendifly/views/user/PaymentMethods.fxml";
         String title = "SendiFly-Historial";
         //Usa cualquier node
         Node node = userGreetingLabel;

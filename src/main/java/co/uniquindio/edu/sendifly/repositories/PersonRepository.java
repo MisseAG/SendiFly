@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class PersonRepository {
 
-    private static PersonRepository instance= new PersonRepository();
+    private static PersonRepository instance;
 
     private ArrayList<Person> People;
 

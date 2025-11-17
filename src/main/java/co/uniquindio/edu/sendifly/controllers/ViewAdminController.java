@@ -105,7 +105,7 @@ public class ViewAdminController {
 
     @FXML
     private void handleCRUD() {
-        cargarVista("/co/uniquindio/edu/sendifly/views/admin/crudEnvios.fxml", "CRUD Envíos");
+        cargarVista("/co/uniquindio/edu/sendifly/views/admin/gestionEnvios.fxml", "CRUD Envíos");
     }
 
     @FXML

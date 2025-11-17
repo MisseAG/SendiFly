@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.uniquindio.edu.sendifly.controllers.ShowShipmentController"
+            prefWidth="420" prefHeight="300">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <VBox spacing="15">
+        <Label text="📦 Detalles del Envío" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+        <GridPane hgap="10" vgap="10">
+            <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Label fx:id="idLabel" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="Origen:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <Label fx:id="origenLabel" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="Destino:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <Label fx:id="destinoLabel" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+            <Label text="Fecha Pedido:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+            <Label fx:id="pedidoLabel" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+            <Label text="Fecha Entrega:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+            <Label fx:id="entregaLabel" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+            <Label text="Precio:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+            <Label fx:id="precioLabel" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+            <Label text="Estado:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+            <Label fx:id="estadoLabel" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+        </GridPane>
+
+        <Button text="Cerrar" onAction="#handleCerrar" alignment="CENTER_RIGHT" />
+    </VBox>
+</AnchorPane>

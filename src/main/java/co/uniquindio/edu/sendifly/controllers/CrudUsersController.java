@@ -3,6 +3,7 @@ package co.uniquindio.edu.sendifly.controllers;
 import co.uniquindio.edu.sendifly.dtos.UserDTO;
 import co.uniquindio.edu.sendifly.models.*;
 import co.uniquindio.edu.sendifly.repositories.PersonRepository;
+import co.uniquindio.edu.sendifly.utils.NavigationUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -183,6 +184,11 @@ public class CrudUsersController {
             e.printStackTrace();
             System.out.println("Error al cargar la interfaz de creación de usuario: " + e.getMessage());
         }
+        //navigation util para delegar
+
+//        String title = "Crear nuevo usuario";
+//        String path = "/co/uniquindio/edu/sendifly/views/admin/CreateUser.fxml";
+//        NavigationUtil.showDialog(path, title);
     }
 
     @FXML

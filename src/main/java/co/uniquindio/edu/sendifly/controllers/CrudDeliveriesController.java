@@ -4,6 +4,7 @@ import co.uniquindio.edu.sendifly.dtos.DeliveryManDTO;
 import co.uniquindio.edu.sendifly.models.DeliveryMan;
 import co.uniquindio.edu.sendifly.models.Person;
 import co.uniquindio.edu.sendifly.repositories.PersonRepository;
+import co.uniquindio.edu.sendifly.utils.NavigationUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -151,6 +152,10 @@ public class CrudDeliveriesController {
             e.printStackTrace();
             System.out.println("Error al cargar la interfaz de creación de domiciliario: " + e.getMessage());
         }
+        //Usando navigationutil para delegar.
+//        String vista = "/co/uniquindio/edu/sendifly/views/admin/CreateDelivery.fxml";
+//        String title = "Crear nuevo Domiciliario";
+//        NavigationUtil.showDialog(vista, title);
     }
 
     @FXML

@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -161,6 +162,32 @@ public class NavigationUtil {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error al cargar la vista: " + vistaFxml);
+            return null;
+        }
+    }
+
+    /**
+     * Muestra una ventana modal (dialog) sin cambiar el Stage principal
+     * @param vistaFxml Ruta del archivo FXML
+     * @param titulo Título de la ventana modal
+     * @return Controller de la vista cargada, o null si hay error
+     */
+    public static <T> T showDialog(String vistaFxml, String titulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(NavigationUtil.class.getResource(vistaFxml));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle(titulo);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+
+            return loader.getController();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar el diálogo: " + vistaFxml);
             return null;
         }
     }

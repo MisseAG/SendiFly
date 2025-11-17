@@ -102,6 +102,9 @@ public class ShipmentService {
 
         currentUser.getShipmentsList().add(shipment);
 
+        System.out.println("Usuario en ShipmentService: " + currentUser);
+        System.out.println("Ahora tiene envíos: " + currentUser.getShipmentsList().size());
+
         return shipment;
     }
 

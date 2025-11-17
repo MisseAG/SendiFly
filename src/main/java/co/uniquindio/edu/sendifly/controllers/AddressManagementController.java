@@ -6,11 +6,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
@@ -255,5 +260,27 @@ public class AddressManagementController implements Initializable {
     public void setCurrentUser(String userId) {
         this.currentUserId = userId;
         loadAddresses();
+    }
+
+    @FXML
+    private void OnAtrasButtonClicked(ActionEvent event) {
+        try {
+            String path = "/co/uniquindio/edu/sendifly/views/ViewUser.fxml";
+            String title = "SENDIFLY - Panel de Usuario";
+
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+
+            Parent root = FXMLLoader.load(getClass().getResource(path));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Error navegando a ViewUser: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

@@ -9,6 +9,7 @@ import co.uniquindio.edu.sendifly.session.SessionManager;
 import co.uniquindio.edu.sendifly.utils.NavigationUtil;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -84,10 +85,10 @@ public class ViewUserController implements Initializable {
     private TableColumn<Shipment, Double> colTarifa;
 
     @FXML
-    private TableColumn<Shipment, Void> colAccionModificar;
+    private TableColumn<Shipment, String> colAccionModificar;
 
     @FXML
-    private TableColumn<Shipment, Void> colAccionCancelar;
+    private TableColumn<Shipment, String> colAccionCancelar;
 
     @FXML
     private Label noEnviosLabel;
@@ -104,9 +105,13 @@ public class ViewUserController implements Initializable {
 
     private void cargarEnviosPendientes(){
         User currentUser = sessionManager.getCurrentUser();
-        List<Shipment> enviosPendientes = currentUser.getShipmentsList().stream()
-                .filter(s -> "REQUESTED".equals(s.getShippingStatus().getName()))
-                .collect(Collectors.toList());
+        List<Shipment> enviosPendientes = currentUser.getShipmentsList();
+
+        System.out.println("=== CARGANDO ENVÍOS ===");
+        System.out.println("Usuario: " + currentUser.getEmail());
+        System.out.println("Envíos del usuario: " + enviosPendientes.size());
+        System.out.println("Tabla visible antes: " + tablaEnvios.isVisible());
+        System.out.println("Items en tabla antes: " + tablaEnvios.getItems().size());
 
         if (enviosPendientes.isEmpty()){
             noEnviosLabel.setVisible(true);
@@ -115,16 +120,33 @@ public class ViewUserController implements Initializable {
             noEnviosLabel.setVisible(false);
             tablaEnvios.setVisible(true);
             tablaEnvios.getItems().setAll(enviosPendientes);
+
+            System.out.println("Items en tabla después: " + tablaEnvios.getItems().size());
+            System.out.println("Tabla visible después: " + tablaEnvios.isVisible());
+        }
+        System.out.println("===================");
+        if (!enviosPendientes.isEmpty()) {
+            noEnviosLabel.setVisible(false);
+            tablaEnvios.setVisible(true);
+            tablaEnvios.getItems().setAll(enviosPendientes);
+
+            System.out.println("Altura tabla: " + tablaEnvios.getHeight());
+            System.out.println("Ancho tabla: " + tablaEnvios.getWidth());
+            System.out.println("Posición Y: " + tablaEnvios.getLayoutY());
         }
     }
 
     private void agregarBotonesAccion() {
         // Botón Modificar
-        colAccionModificar.setCellFactory(param -> new TableCell<>() {
+        colAccionModificar.setCellFactory(param -> new TableCell<Shipment, String>() {
             private final Button btn = new Button("✏");
 
+            {
+                btn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+            }
+
             @Override
-            protected void updateItem(Void item, boolean empty) {
+            protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty) {
                     setGraphic(null);
@@ -139,11 +161,15 @@ public class ViewUserController implements Initializable {
         });
 
         // Botón Cancelar
-        colAccionCancelar.setCellFactory(param -> new TableCell<>() {
+        colAccionCancelar.setCellFactory(param -> new TableCell<Shipment, String>() {
             private final Button btn = new Button("✕");
 
+            {
+                btn.setStyle("-fx-background-color: #f44336; -fx-text-fill: white;");
+            }
+
             @Override
-            protected void updateItem(Void item, boolean empty) {
+            protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty) {
                     setGraphic(null);
@@ -158,22 +184,49 @@ public class ViewUserController implements Initializable {
         });
     }
 
-    private void configurarTabla(){
-        colIdEnvio.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getId()));
-        colOrigen.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getOrigin().getAlias()));
-        colDestino.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDestination().getAlias()));
-        colPeso.setCellValueFactory(data -> new SimpleFloatProperty(data.getValue().getPack().getWeight()).asObject());
-        colTarifa.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getPrice()).asObject());
+    private void configurarTabla() {
 
-        // Botones de acción
+        System.out.println("=== CONFIGURANDO TABLA ===");
+        System.out.println("Tabla es null? " + (tablaEnvios == null));
+        System.out.println("colIdEnvio es null? " + (colIdEnvio == null));
+        System.out.println("colOrigen es null? " + (colOrigen == null));
+
+        colIdEnvio.setCellValueFactory(
+                data -> {
+                    System.out.println("CellValueFactory ID ejecutándose para: " + data.getValue().getId());
+                    return new SimpleStringProperty(data.getValue().getId());
+                }
+        );
+
+        colOrigen.setCellValueFactory(
+                data -> new SimpleStringProperty(
+                        data.getValue().getOrigin().getAlias()
+                )
+        );
+
+        colDestino.setCellValueFactory(
+                data -> new SimpleStringProperty(
+                        data.getValue().getDestination().getAlias()
+                )
+        );
+
+        colPeso.setCellValueFactory(
+                data -> new SimpleObjectProperty<>(data.getValue().getPack().getWeight())
+        );
+
+        colTarifa.setCellValueFactory(
+                data -> new SimpleObjectProperty<>(data.getValue().getPrice())
+        );
+
+        System.out.println("=== FIN CONFIGURACIÓN ===");
+
         agregarBotonesAccion();
-
     }
 
     private void modificarEnvio(Shipment shipment) {
         System.out.println("Modificar envío: " + shipment.getId());
         String title = "SendiFly - Modificar envío";
-        String path = "/co/uniquindio/edu/sendifly/views/user/CreareShipmentView.fxml";
+        String path = "/co/uniquindio/edu/sendifly/views/user/CreateShipmentView.fxml";
     }
 
     private void cancelarEnvio(Shipment shipment) {

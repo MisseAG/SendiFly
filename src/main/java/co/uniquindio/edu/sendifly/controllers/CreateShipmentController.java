@@ -236,7 +236,7 @@ public class CreateShipmentController {
 
             // Limpiar formulario
             limpiarFormulario();
-
+            handleBack(null);
         } catch (NumberFormatException e) {
             showError("Datos inválidos", "Peso y volumen deben ser números válidos");
         } catch (IllegalArgumentException e) {
@@ -245,6 +245,7 @@ public class CreateShipmentController {
             showError("Error al crear envío", e.getMessage());
             e.printStackTrace();
         }
+
     }
 
     @FXML

@@ -66,6 +66,21 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0">
                     <children>
+                        <Button fx:id="OnAtrasButton" mnemonicParsing="false" onAction="#OnAtrasButtonClicked" prefHeight="55.0" prefWidth="188.0" style="-fx-background-radius: 50;" text="ATRÁS">
+                            <font>
+                                <Font name="Yu Gothic UI Semibold" size="21.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <InnerShadow />
+                            </effect>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0">
+                    <children>
                         <Button fx:id="onAgregarButton" mnemonicParsing="false" onAction="#onAgregarButtonClicked" prefHeight="55.0" prefWidth="188.0" style="-fx-background-radius: 50;" text="AGREGAR">
                             <font>
                                 <Font name="Yu Gothic UI Semibold" size="21.0" />

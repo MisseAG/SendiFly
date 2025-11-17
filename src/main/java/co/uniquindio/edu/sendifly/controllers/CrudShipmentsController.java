@@ -119,8 +119,26 @@ public class CrudShipmentsController {
 
     @FXML
     void handleCrear(ActionEvent event) {
-        // Si se desea permitir creación manual, aquí se puede invocar el formulario
-        System.out.println("La creación de envíos está gestionada por el cliente.");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/uniquindio/edu/sendifly/views/admin/CreateShipmentAdmin.fxml"));
+            Parent root = loader.load();
+            CreateShipmentAdminController controller = loader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("Crear Envío");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarError("No se pudo cargar el formulario de creación.");
+        }
+    }
+
+    private void mostrarError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     @FXML

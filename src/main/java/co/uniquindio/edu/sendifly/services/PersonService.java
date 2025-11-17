@@ -69,7 +69,7 @@ public class PersonService {
 
         System.out.println("Personas en repositorio: " + personRepository.getAll().size());
         personRepository.getAll().forEach(p ->
-                System.out.println("Email: " + p.getEmail() + " | Password: " + p.getPassword())
+                System.out.println("Email: " + p.getEmail() + " | Password: " + p.getPassword() + "|Rol: " + p.getRol())
         );
     }
 

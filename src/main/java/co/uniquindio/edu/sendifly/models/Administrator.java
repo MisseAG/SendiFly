@@ -7,6 +7,11 @@ public class Administrator extends Person{
         super(build.id, build.name, build.phone, build.email, build.password);
     }
 
+    @Override
+    public String getRol() {
+        return "Admin";
+    }
+
     public static class AdministratorBuilder{
         private String id;
         private String name;

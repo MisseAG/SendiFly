@@ -206,4 +206,8 @@ public class User extends Person{
         }
     }
 
+    @Override
+    public String getRol(){
+        return "User";
+    }
 }

@@ -83,7 +83,8 @@
                         </VBox>
 
                         <!-- TABLA DE ENVÍOS PENDIENTES -->
-                        <VBox alignment="CENTER" maxWidth="500.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <VBox alignment="CENTER" maxWidth="500.0" minHeight="350.0"
+                              prefHeight="400.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);">
                             <children>
                                 <Label text="📩 Envíos Pendientes" textFill="#333333">
                                     <font>
@@ -97,7 +98,7 @@
                                     </font>
                                 </Label>
 
-                                <TableView fx:id="tablaEnvios" prefHeight="250.0" style="-fx-background-color: white; -fx-table-cell-border-color: transparent;" VBox.vgrow="ALWAYS">
+                                <TableView fx:id="tablaEnvios"  minHeight="100.0" prefHeight="250.0" style="-fx-background-color: white; -fx-table-cell-border-color: transparent;" VBox.vgrow="ALWAYS">
                                     <columns>
                                         <!-- ID Envío -->
                                         <TableColumn fx:id="colIdEnvio" minWidth="50.0" prefWidth="50.0" style="-fx-alignment: CENTER;" text="ID" />

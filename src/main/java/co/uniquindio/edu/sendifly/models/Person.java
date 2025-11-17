@@ -45,6 +45,8 @@ public abstract class Person {
     public void setPassword(String password) {
         this.password = password;}
 
+    public abstract String getRol();
+
     @Override
     public String toString() {
         return "ID: " + id + "\nName: " + name +

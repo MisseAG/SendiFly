@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="300.0" prefWidth="400.0" spacing="20.0" style="-fx-background-color: white; -fx-padding: 30;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.sendifly.controllers.TrackShipmentController">
+    <children>
+        <!-- Icono y Título -->
+        <VBox alignment="CENTER" spacing="10.0">
+            <children>
+                <Label text="📦" style="-fx-font-size: 48px;" />
+                <Label text="Rastrear Envío" textFill="#333333">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+
+        <!-- Separador -->
+        <Separator prefWidth="200.0" />
+
+        <!-- Información del Envío -->
+        <VBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-padding: 20;">
+            <children>
+                <!-- ID del Envío -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="ID Envío:" textFill="#666666">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="idEnvioLabel" text="--" textFill="#333333">
+                            <font>
+                                <Font name="Courier New" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+
+                <!-- Estado del Envío -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="Estado:" textFill="#666666">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="estadoLabel" text="--" textFill="#e12a26">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+
+                <!-- Icono de Estado -->
+                <HBox alignment="CENTER" spacing="5.0">
+                    <children>
+                        <Label fx:id="iconoEstadoLabel" text="📍" style="-fx-font-size: 36px;" />
+                        <Label fx:id="descripcionEstadoLabel" text="Tu envío está siendo procesado" textAlignment="CENTER" textFill="#666666" wrapText="true">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Botón Cerrar -->
+        <Button fx:id="cerrarButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleCerrar" prefHeight="45.0" style="-fx-background-color: #e12a26; -fx-text-fill: white; -fx-background-radius: 10;" text="Cerrar">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </Button>
+    </children>
+</VBox>

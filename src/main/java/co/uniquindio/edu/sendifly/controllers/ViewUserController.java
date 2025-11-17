@@ -229,33 +229,38 @@ public class ViewUserController implements Initializable {
 
     @FXML
     private void handleTrackShipment(ActionEvent event) {
-        System.out.println("Rastrear envío");
-        String shipmentId =  trackingTextField.getText().trim();
+        String shipmentId = trackingTextField.getText().trim();
 
         if (shipmentId.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Campo Vacío", "Ingresar Id de envío");
+            showAlert(Alert.AlertType.WARNING,"Campo vacío", "Ingresa un ID de envío");
+            return;
         }
 
-        try{
+        try {
             ShipmentService shipmentService = ShipmentService.getInstance();
             Shipment shipment = shipmentService.getShipment(shipmentId);
 
-            ShipmentTrackDTO dto = new ShipmentTrackDTO
-                    (shipment.getId(),
-                            shipment.getShippingStatus().getName());
+            // Crear DTO
+            ShipmentTrackDTO dto = new ShipmentTrackDTO(
+                    shipment.getId(),
+                    shipment.getShippingStatus().getName()
+            );
 
-            TrackShipmentController controller = NavigationUtil.showDialog("/co/uniquindio/edu/sendifly/views/user/TrackShipmentDialog.fxml", "Rastrear Envío");
+            // Mostrar modal
+            TrackShipmentController controller = NavigationUtil.showDialog(
+                    "/co/uniquindio/edu/sendifly/views/user/TrackShipmentDialog.fxml",
+                    "Rastrear Envío"
+            );
 
             if (controller != null) {
                 controller.setShipmentData(dto);
             }
-        } catch (IllegalArgumentException e){
-            showAlert(Alert.AlertType.ERROR, "Envío no encontrado", "No existe un envío con ID:" + shipmentId);
+
+        } catch (IllegalArgumentException e) {
+            showAlert(Alert.AlertType.WARNING,"Envío no encontrado",
+                    "No existe un envío con ID: " + shipmentId);
         }
-
-
     }
-
 
 
 

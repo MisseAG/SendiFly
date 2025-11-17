@@ -1,18 +1,22 @@
 package co.uniquindio.edu.sendifly.services;
 
 import co.uniquindio.edu.sendifly.models.Administrator;
+import co.uniquindio.edu.sendifly.models.AvailabilityStatus.AvailabilityStatus;
 import co.uniquindio.edu.sendifly.models.DeliveryMan;
 import co.uniquindio.edu.sendifly.models.Person;
 import co.uniquindio.edu.sendifly.models.User;
 import co.uniquindio.edu.sendifly.repositories.PersonRepository;
 
 import java.util.UUID;
-
+/**
+ * Servicio para gestionar la lógica de negocio de Personas.
+ * Implementa el patrón Singleton para garantizar una única instancia.
+ */
 public class PersonService {
     private static PersonService instance;
     private final PersonRepository personRepository;
 
-    public PersonService(PersonRepository personRepository) {
+    private PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
         System.out.println("PersonService creado. Repository: " + personRepository);
         initializedData();
@@ -43,6 +47,9 @@ public class PersonService {
                 email("antonio@mail.com").
                 password("567890").
                 build();
+      //Crear direcciones de prueba
+      createTestAddresses((User) p2);
+
       Person p3= new DeliveryMan.DeliveryManBuilder().id("1096449205").
                 name("Pacho").
                 phone("3119430578").
@@ -58,6 +65,70 @@ public class PersonService {
         personRepository.getAll().forEach(p ->
                 System.out.println("Email: " + p.getEmail() + " | Password: " + p.getPassword())
         );
+    }
+
+    /**
+     * Crea direcciones de prueba para un usuario
+     */
+    private void createTestAddresses(User user) {
+        // Dirección 1: Casa
+        Address casa = new Address.AddressBuilder()
+                .id("addr_001")
+                .alias("Casa")
+                .street("Calle 15 #23-45")
+                .city("Armenia")
+                .coordinates(4.5339, -75.6811)
+                .build();
+
+        // Dirección 2: Oficina
+        Address oficina = new Address.AddressBuilder()
+                .id("addr_002")
+                .alias("Oficina")
+                .street("Carrera 14 #11-20")
+                .city("Armenia")
+                .coordinates(20, -20)
+                .build();
+
+        // Dirección 3: Casa de Padres
+        Address padres = new Address.AddressBuilder()
+                .id("addr_003")
+                .alias("Casa Padres")
+                .street("Calle 20 Norte #8-34")
+                .city("Calarcá")
+                .coordinates(25, -15)
+                .build();
+
+        // Dirección 4: Bodega
+        Address bodega = new Address.AddressBuilder()
+                .id("addr_004")
+                .alias("Bodega")
+                .street("Zona Industrial, Bodega 5")
+                .city("La Tebaida")
+                .coordinates(30, 10)
+                .build();
+
+        // Dirección 5: Finca
+        Address finca = new Address.AddressBuilder()
+                .id("addr_005")
+                .alias("Finca")
+                .street("Vereda La Bella, Km 3")
+                .city("Montenegro")
+                .coordinates(5, 12)
+                .build();
+
+        // Agregar todas las direcciones al usuario
+        try {
+            user.addAddress(casa);
+            user.addAddress(oficina);
+            user.addAddress(padres);
+            user.addAddress(bodega);
+            user.addAddress(finca);
+
+            System.out.println("✓ Direcciones de prueba agregadas a " + user.getName());
+
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error al agregar direcciones: " + e.getMessage());
+        }
     }
 
     public void registerPerson(String name, String email, String phone, String password, String role) {
@@ -109,6 +180,25 @@ public class PersonService {
         }
     }
 
+    public void updatePerson(Person person) {
+
+        if (!personRepository.existPerson(person)) {
+            throw new IllegalArgumentException("No existe");
+        }
+
+        String email = person.getEmail();
+        String id = person.getId();
+        if (personRepository.isEmailTakenByOther(email, id)) {
+            throw new IllegalArgumentException("Email en uso");
+        }
+        validateEmail(person.getEmail());
+
+        validatePassword(person.getPassword());
+
+        personRepository.updatePerson(person);
+    }
+
+    private boolean emailExists(String email) {
     public void validatePhone(String phone) {
         if (!phone.matches("\\d{10}")) {
             throw new IllegalArgumentException("El número telefónico debe tener exactamente 10 dígitos numéricos.");
@@ -129,15 +219,15 @@ public class PersonService {
     }
 
     private String generateIdUser() {
-        return "User: " + generateId();
+        return "User_" + generateId();
     }
 
     private String generateIdAdmin() {
-        return "Admin: " + generateId();
+        return "Admin_" + generateId();
     }
 
     private String generateIdDelivery() {
-        return "DelM: " + generateId();
+        return "DelM_" + generateId();
     }
 }
 

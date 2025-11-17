@@ -14,7 +14,7 @@ public class PackRepository {
 
     private PackRepository() {
         this.packages = new ArrayList<>();
-        loadDefaultPackages();
+        //loadDefaultPackages();
     }
 
     public static PackRepository getInstance() {
@@ -24,48 +24,48 @@ public class PackRepository {
         return instance;
     }
 
-    private void loadDefaultPackages() {
-        packages.add(new Pack.PackageBuilder()
-                .id("Paquete: 001")
-                .product("Smartphone")
-                .price(50000)
-                .weight(0.3f)
-                .volume(0.2f)
-                .build());
-
-        packages.add(new Pack.PackageBuilder()
-                .id("Paquete: 002")
-                .product("Laptop")
-                .price(120000)
-                .weight(2.0f)
-                .volume(1.5f)
-                .build());
-
-        packages.add(new Pack.PackageBuilder()
-                .id("Paquete: 003")
-                .product("Libros")
-                .price(30000)
-                .weight(0.7f)
-                .volume(0.8f)
-                .build());
-
-        packages.add(new Pack.PackageBuilder()
-                .id("Paquete: 004")
-                .product("Zapatos")
-                .price(70000)
-                .weight(1.0f)
-                .volume(0.6f)
-                .build());
-
-        packages.add(new Pack.PackageBuilder()
-                .id("Paquete: 005")
-                .product("headphones")
-                .price(90000)
-                .weight(0.0032f)
-                .volume(0.02f)
-                .build());
-
-    }
+//    private void loadDefaultPackages() {
+//        packages.add(new Pack.PackageBuilder()
+//                .id("Paquete: 001")
+//                .product("Smartphone")
+//                .price(50000)
+//                .weight(0.3f)
+//                .volume(0.2f)
+//                .build());
+//
+//        packages.add(new Pack.PackageBuilder()
+//                .id("Paquete: 002")
+//                .product("Laptop")
+//                .price(120000)
+//                .weight(2.0f)
+//                .volume(1.5f)
+//                .build());
+//
+//        packages.add(new Pack.PackageBuilder()
+//                .id("Paquete: 003")
+//                .product("Libros")
+//                .price(30000)
+//                .weight(0.7f)
+//                .volume(0.8f)
+//                .build());
+//
+//        packages.add(new Pack.PackageBuilder()
+//                .id("Paquete: 004")
+//                .product("Zapatos")
+//                .price(70000)
+//                .weight(1.0f)
+//                .volume(0.6f)
+//                .build());
+//
+//        packages.add(new Pack.PackageBuilder()
+//                .id("Paquete: 005")
+//                .product("headphones")
+//                .price(90000)
+//                .weight(0.0032f)
+//                .volume(0.02f)
+//                .build());
+//
+//    }
 
     public void addPackage(Pack pack) {
         for (Pack p : packages) {

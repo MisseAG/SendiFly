@@ -10,6 +10,6 @@ public class Fragile implements AdditionalService {
 
     @Override
     public String getName() {
-        return "Fragile";
+        return "Frágil";
     }
 }

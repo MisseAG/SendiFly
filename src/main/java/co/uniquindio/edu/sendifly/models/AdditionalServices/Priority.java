@@ -10,6 +10,6 @@ public class Priority implements AdditionalService {
 
     @Override
     public String getName() {
-        return "Priority";
+        return "Prioridad";
     }
 }

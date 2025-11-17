@@ -10,6 +10,6 @@ public class SignatureRequired implements AdditionalService {
 
     @Override
     public String getName() {
-        return "SignatureRequired";
+        return "Firma Requerida";
     }
 }

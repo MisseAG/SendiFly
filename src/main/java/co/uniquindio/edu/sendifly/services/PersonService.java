@@ -4,6 +4,9 @@ import co.uniquindio.edu.sendifly.models.*;
 import co.uniquindio.edu.sendifly.models.AvailabilityStatus.AvailabilityStatus;
 import co.uniquindio.edu.sendifly.repositories.PersonRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -229,7 +232,84 @@ public class PersonService {
     }
 
 
+    public boolean addAddress(String userId, Address address) {
+        System.out.println("Buscando usuario: " + userId);
+        Optional<Person> personOpt = personRepository.getPerson(userId);
+
+        if (personOpt.isPresent() && personOpt.get() instanceof User) {
+            User user = (User) personOpt.get();
+            System.out.println("Usuario encontrado: " + user.getName());
+            System.out.println("Agregando dirección: " + address.getAlias());
+
+            user.getAddressesList().add(address);
+            boolean result = personRepository.updatePerson(user);
+            System.out.println("Resultado de updatePerson: " + result);
+            return result;
+        } else {
+            System.out.println("Usuario no encontrado o no es tipo User");
+            return false;
+        }
+    }
+
+
+    public boolean updateAddress(String userId, Address updatedAddress) {
+        System.out.println("Actualizando dirección para usuario: " + userId);
+        Optional<Person> personOpt = personRepository.getPerson(userId);
+
+        if (personOpt.isPresent() && personOpt.get() instanceof User) {
+            User user = (User) personOpt.get();
+            List<Address> addresses = user.getAddressesList();
+
+            for (int i = 0; i < addresses.size(); i++) {
+                if (addresses.get(i).getId().equals(updatedAddress.getId())) {
+                    System.out.println("Dirección encontrada, actualizando: " + updatedAddress.getAlias());
+                    addresses.set(i, updatedAddress);
+                    boolean result = personRepository.updatePerson(user);
+                    System.out.println("Resultado de updatePerson: " + result);
+                    return result;
+                }
+            }
+            System.out.println("Dirección no encontrada con ID: " + updatedAddress.getId());
+        }
+        return false;
+    }
+
+    public boolean deleteAddress(String userId, String addressId) {
+        Optional<Person> personOpt = personRepository.getPerson(userId);
+
+        if (personOpt.isPresent() && personOpt.get() instanceof User) {
+            User user = (User) personOpt.get();
+            boolean removed = user.getAddressesList().removeIf(a -> a.getId().equals(addressId));
+
+            if (removed) {
+                return personRepository.updatePerson(user);
+            }
+        }
+        return false;
+    }
+
+    public List<Address> getUserAddresses(String userId) {
+        System.out.println("Obteniendo direcciones para usuario: " + userId);
+        Optional<Person> personOpt = personRepository.getPerson(userId);
+
+        if (personOpt.isPresent() && personOpt.get() instanceof User) {
+            User user = (User) personOpt.get();
+            List<Address> addresses = new ArrayList<>(user.getAddressesList());
+            System.out.println("Direcciones encontradas: " + addresses.size());
+            return addresses;
+        }
+        System.out.println("Usuario no encontrado o no es tipo User");
+        return new ArrayList<>();
+    }
+
+    private String generateAddressId() {
+        return "ADDR_" + UUID.randomUUID().toString().substring(0,8);
+    }
+
 }
+
+
+
 
 
 

@@ -45,7 +45,7 @@ public class PersonRepository {
         }throw new IllegalArgumentException("[PersonRepository]el usuario No existe");
     }
 
-    public void updatePerson(Person updatedPerson) {
+    public boolean updatePerson(Person updatedPerson) {
         if (updatedPerson == null) {
             throw new IllegalArgumentException("[PersonRepository] La persona no puede ser nula");
         }
@@ -56,7 +56,7 @@ public class PersonRepository {
                 // Reemplazar la persona en la lista
                 People.set(i, updatedPerson);
                 System.out.println("[PersonRepository] Persona actualizada: " + updatedPerson.getEmail());
-                return;
+                return true;
             }
         }
 
